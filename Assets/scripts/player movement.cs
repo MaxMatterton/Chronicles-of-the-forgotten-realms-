@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Mathematics;
 using TMPro;
-using Cainos.LucidEditor;
 
 public class playermovement : MonoBehaviour
 {
