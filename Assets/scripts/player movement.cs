@@ -69,12 +69,17 @@ public class playermovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
+            if (cooldownTimer1 >= attackCooldown1)
+            {
+                cooldownTimer1 = 0;
+                anim.SetTrigger("attack");
+            }
+            
             if (PlayerRange())
             {
+                
                 if (cooldownTimer1 >= attackCooldown1)
                 {
-                    cooldownTimer1 = 0;
-                    anim.SetTrigger("attack");
                     EnemyHealth.TakeDamage(damage);
                 }
                 
@@ -83,12 +88,15 @@ public class playermovement : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Mouse1))
         {
+            if (cooldownTimer2 >= attackCooldown1)
+            {
+                cooldownTimer2 = 0;
+                anim.SetTrigger("attack2");
+            }
             if (PlayerRange())
             {
                 if (cooldownTimer2 >= attackCooldown2)
                 {
-                    cooldownTimer2 = 0;
-                    anim.SetTrigger("attack2");
                     EnemyHealth.TakeDamage(damage);
                 }
                 
