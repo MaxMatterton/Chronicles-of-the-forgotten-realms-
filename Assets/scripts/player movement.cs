@@ -69,38 +69,40 @@ public class playermovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            if (cooldownTimer1 >= attackCooldown1)
+           if (PlayerRange())
+            {
+                if (cooldownTimer1 >= attackCooldown1)
+                {   
+                    cooldownTimer1 = 0;
+                    anim.SetTrigger("attack");
+                    
+                }
+                
+            }
+            else if (cooldownTimer1 >= attackCooldown1)
             {
                 cooldownTimer1 = 0;
                 anim.SetTrigger("attack");
             }
-            
-            if (PlayerRange())
-            {
-                
-                if (cooldownTimer1 >= attackCooldown1)
-                {
-                    EnemyHealth.TakeDamage(damage);
-                }
-                
-            }
-            
         }
         else if (Input.GetKeyDown(KeyCode.Mouse1))
         {
-            if (cooldownTimer2 >= attackCooldown1)
+            if (PlayerRange())
+            {
+                if (cooldownTimer2 >= attackCooldown2)
+                {   
+                    cooldownTimer2 = 0;
+                    anim.SetTrigger("attack2");
+                    
+                }
+                
+            }
+            else if (cooldownTimer2 >= attackCooldown2)
             {
                 cooldownTimer2 = 0;
                 anim.SetTrigger("attack2");
             }
-            if (PlayerRange())
-            {
-                if (cooldownTimer2 >= attackCooldown2)
-                {
-                    EnemyHealth.TakeDamage(damage);
-                }
-                
-            }
+            
         }
 
         anim.SetBool("isgrouned ", grounded);
@@ -171,10 +173,15 @@ public class playermovement : MonoBehaviour
 
         return hit.collider != null;
     }
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(boxCollider.bounds.center + transform.right * range * transform.localScale.x * colliderDistance,
             new Vector3(boxCollider.bounds.size.x * range, boxCollider.bounds.size.y, boxCollider.bounds.size.z));
+    }
+    public void damageEnemy()
+    {
+        EnemyHealth.TakeDamage(damage);
     }
 }
