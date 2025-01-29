@@ -386,7 +386,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8995753746856439625}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.18, y: -0.18, z: 0.05475896}
   m_LocalScale: {x: 5.1, y: 5.1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -483,6 +483,7 @@ MonoBehaviour:
   MaxHealth: 100
   CurrentHealth: 0
   damage: 0
+  damageParticles: {fileID: 7033977630136317332, guid: 01fd2c2b4265d5a40b21f61b20257acb, type: 3}
 --- !u!114 &9006016844882200977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -497,7 +498,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackCooldown: 0
   range: 1.52
-  damage: 25
+  damage: 10
   colliderDistance: 0.18
   boxCollider: {fileID: 1149939530557852520}
   playerLayer:

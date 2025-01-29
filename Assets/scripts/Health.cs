@@ -35,7 +35,7 @@ public class Health : MonoBehaviour
             anim.SetTrigger("hurt");
             DamageParticles();
         }
-         
+        else
         {
             if (!Dead)
             {
