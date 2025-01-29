@@ -38782,6 +38782,10 @@ PrefabInstance:
       propertyPath: attackCooldown
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 5785656023530182903, guid: 76e49e93625203d4a9394b1ef7157223, type: 3}
+      propertyPath: damageParticles
+      value: 
+      objectReference: {fileID: 7033977630136317332, guid: 01fd2c2b4265d5a40b21f61b20257acb, type: 3}
     - target: {fileID: 8804592084383486659, guid: 76e49e93625203d4a9394b1ef7157223, type: 3}
       propertyPath: Ds
       value: 
