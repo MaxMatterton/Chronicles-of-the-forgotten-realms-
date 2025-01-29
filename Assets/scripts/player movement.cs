@@ -74,7 +74,7 @@ public class playermovement : MonoBehaviour
                 {
                     cooldownTimer1 = 0;
                     anim.SetTrigger("attack");
-
+                    damageEnemy(damage);
                 }
 
             }
@@ -92,7 +92,7 @@ public class playermovement : MonoBehaviour
                 {
                     cooldownTimer2 = 0;
                     anim.SetTrigger("attack2");
-
+                    damageEnemy(damage);
                 }
 
             }
@@ -109,9 +109,6 @@ public class playermovement : MonoBehaviour
 
 
     }
-
-
-
     private void jump()
     {
         mybody.velocity = new Vector2(mybody.velocity.x, JumpPower);
@@ -179,8 +176,8 @@ public class playermovement : MonoBehaviour
         Gizmos.DrawWireCube(boxCollider.bounds.center + transform.right * range * transform.localScale.x * colliderDistance,
             new Vector3(boxCollider.bounds.size.x * range, boxCollider.bounds.size.y, boxCollider.bounds.size.z));
     }
-    public void damageEnemy()
+    public void damageEnemy(float damage)
     {
-        EnemyHealth.TakeDamage(damage);
+         EnemyHealth.TakeDamage(damage);
     }
 }

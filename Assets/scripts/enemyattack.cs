@@ -41,11 +41,8 @@ public class enemyattack : MonoBehaviour
                 anim.SetTrigger("attack");
             }
         }
-
         if (enemyPatrol != null)
             enemyPatrol.enabled = !PlayerInSight();
-
-
     }
 
     private bool PlayerInSight()
@@ -73,6 +70,4 @@ public class enemyattack : MonoBehaviour
         if (PlayerInSight())
             Health.TakeDamage(damage);
     }
-                            
-
 }
