@@ -14,7 +14,7 @@ public class playermovement : MonoBehaviour
     [SerializeField] float JumpPower;
     [SerializeField] TextMeshProUGUI scoretext;
     float scorecount;
-    public GameObject next; 
+    public GameObject next;
     Health EnemyHealth;
 
 
@@ -48,7 +48,7 @@ public class playermovement : MonoBehaviour
         mybody.velocity = new Vector2(Input.GetAxis("Horizontal") * moveSpeed, mybody.velocity.y);
 
         float Horizontalinput = Input.GetAxis("Horizontal");
-       
+
 
         if (Horizontalinput > 0.01f)
         {
@@ -68,15 +68,15 @@ public class playermovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-           if (PlayerRange())
+            if (PlayerRange())
             {
                 if (cooldownTimer1 >= attackCooldown1)
-                {   
+                {
                     cooldownTimer1 = 0;
                     anim.SetTrigger("attack");
-                    
+
                 }
-                
+
             }
             else if (cooldownTimer1 >= attackCooldown1)
             {
@@ -89,19 +89,19 @@ public class playermovement : MonoBehaviour
             if (PlayerRange())
             {
                 if (cooldownTimer2 >= attackCooldown2)
-                {   
+                {
                     cooldownTimer2 = 0;
                     anim.SetTrigger("attack2");
-                    
+
                 }
-                
+
             }
             else if (cooldownTimer2 >= attackCooldown2)
             {
                 cooldownTimer2 = 0;
                 anim.SetTrigger("attack2");
             }
-            
+
         }
 
         anim.SetBool("isgrouned ", grounded);
@@ -110,7 +110,7 @@ public class playermovement : MonoBehaviour
 
     }
 
-    
+
 
     private void jump()
     {
@@ -129,36 +129,36 @@ public class playermovement : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-      
 
-       if (other.gameObject.CompareTag("waystone"))
-       {
+
+        if (other.gameObject.CompareTag("waystone"))
+        {
             LevelText.SetActive(true);
-       }
-       if (other.gameObject.CompareTag("Finish"))
-       {
-           next.SetActive(true);
-       }
+        }
+        if (other.gameObject.CompareTag("Finish"))
+        {
+            next.SetActive(true);
+        }
 
-       if (other.gameObject.tag == "coins")
-       {
-           Destroy(other.gameObject);
-           scorecount++;
-           Debug.Log(scorecount);
-           scoretext.text = "coins:" + scorecount.ToString();
-       }
+        if (other.gameObject.tag == "coins")
+        {
+            Destroy(other.gameObject);
+            scorecount++;
+            Debug.Log(scorecount);
+            scoretext.text = "coins:" + scorecount.ToString();
+        }
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-        
-        
-      if (other.gameObject.CompareTag("waystone"))
-     {
-           LevelText.SetActive(false);
-     }
 
-      
+
+        if (other.gameObject.CompareTag("waystone"))
+        {
+            LevelText.SetActive(false);
+        }
+
+
     }
     bool PlayerRange()
     {

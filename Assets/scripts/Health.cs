@@ -12,6 +12,10 @@ public class Health : MonoBehaviour
     public float damage;
     bool Dead;
 
+    //particle system
+    [SerializeField] private ParticleSystem damageParticles;
+    private ParticleSystem damageParticlesInstance;
+
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -29,8 +33,9 @@ public class Health : MonoBehaviour
         if (CurrentHealth > 0)
         {
             anim.SetTrigger("hurt");
+            DamageParticles();
         }
-        else
+         
         {
             if (!Dead)
             {
@@ -57,5 +62,10 @@ public class Health : MonoBehaviour
     public void DeadEnemy()
     {
         Destroy(this.gameObject);
+    }
+
+    public void DamageParticles()
+    {
+        damageParticlesInstance = Instantiate(damageParticles, transform.position, Quaternion.identity);
     }
 }
