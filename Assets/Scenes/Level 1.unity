@@ -11570,7 +11570,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4189154530578471704, guid: a163e36bb0eeef54abc5fa11c1f34f0e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.13
+      value: 0.37
       objectReference: {fileID: 0}
     - target: {fileID: 4189154530578471704, guid: a163e36bb0eeef54abc5fa11c1f34f0e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -11638,7 +11638,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7557059997687664829, guid: a163e36bb0eeef54abc5fa11c1f34f0e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.39
+      value: 7.47
       objectReference: {fileID: 0}
     - target: {fileID: 7557059997687664829, guid: a163e36bb0eeef54abc5fa11c1f34f0e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -12161,7 +12161,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7557059997687664829, guid: a163e36bb0eeef54abc5fa11c1f34f0e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.39
+      value: 6.28
       objectReference: {fileID: 0}
     - target: {fileID: 7557059997687664829, guid: a163e36bb0eeef54abc5fa11c1f34f0e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -35212,10 +35212,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4819334403734205292, guid: d8a683ea36e07c1428d4d6f42b3a7406, type: 3}
-      propertyPath: damageParticles
-      value: 
-      objectReference: {fileID: 7033977630136317332, guid: 01fd2c2b4265d5a40b21f61b20257acb, type: 3}
     - target: {fileID: 5490479641813161729, guid: d8a683ea36e07c1428d4d6f42b3a7406, type: 3}
       propertyPath: leftEdge
       value: 
@@ -35235,10 +35231,6 @@ PrefabInstance:
     - target: {fileID: 8995753746856439625, guid: d8a683ea36e07c1428d4d6f42b3a7406, type: 3}
       propertyPath: m_Name
       value: EnemyType1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9006016844882200977, guid: d8a683ea36e07c1428d4d6f42b3a7406, type: 3}
-      propertyPath: damage
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
