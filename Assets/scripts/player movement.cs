@@ -25,6 +25,10 @@ public class playermovement : MonoBehaviour
     public float damage;
     bool Dead;
 
+    //particle system
+    [SerializeField] private ParticleSystem coinParticles;
+    private ParticleSystem coinParticlesInstance;
+
     [Header("Attack Parameters")]
     [SerializeField] private float attackCooldown1;
     [SerializeField] private float attackCooldown2;
@@ -143,6 +147,7 @@ public class playermovement : MonoBehaviour
             scorecount++;
             Debug.Log(scorecount);
             scoretext.text = "coins:" + scorecount.ToString();
+            CoinParticles(other);
         }
     }
 
@@ -179,5 +184,10 @@ public class playermovement : MonoBehaviour
     public void damageEnemy(float damage)
     {
          EnemyHealth.TakeDamage(damage);
+    }
+
+    public void CoinParticles(Collider2D other)
+    {
+        coinParticlesInstance = Instantiate(coinParticles, other.transform.position, Quaternion.identity);
     }
 }
