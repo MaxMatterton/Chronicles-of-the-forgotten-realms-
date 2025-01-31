@@ -13,8 +13,8 @@ public class EnemyPatrol : MonoBehaviour
 
     [Header("Movement parameters")]
     [SerializeField] private float speed;
-    private Vector3 initScale;
-    private bool movingLeft;
+    public Vector3 initScale;
+    public bool movingLeft;
 
     [Header("Idle Behaviour")]
     [SerializeField] private float idleDuration;
@@ -50,8 +50,9 @@ public class EnemyPatrol : MonoBehaviour
         }
     }
 
-    private void DirectionChange()
+    public void DirectionChange()
     {
+
         anim.SetBool("isrunning", false);
         idleTimer += Time.deltaTime;
 
@@ -71,6 +72,11 @@ public class EnemyPatrol : MonoBehaviour
         //Move in that direction
         enemy.position = new Vector3(enemy.position.x + Time.deltaTime * _direction * speed,
             enemy.position.y, enemy.position.z);
+    }
+    public void lookatplayer()
+    {
+        anim.SetBool("isrunning", false);
+        movingLeft = !movingLeft;
     }
 
 }
