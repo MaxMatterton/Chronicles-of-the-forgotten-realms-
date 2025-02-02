@@ -32,6 +32,7 @@ public class Health : MonoBehaviour
 
         if (CurrentHealth > 0)
         {
+            if ()
             anim.SetTrigger("hurt");
             DamageParticles();
         }
@@ -53,6 +54,7 @@ public class Health : MonoBehaviour
                     anim.SetTrigger("dead");
                     Invoke("DeadEnemy",2);
                     Dead = true;
+                    GetComponent<EnemyPatrol>().enabled = false;
                 }
             }
         }

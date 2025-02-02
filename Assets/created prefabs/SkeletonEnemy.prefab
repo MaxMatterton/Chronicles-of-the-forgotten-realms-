@@ -201,6 +201,8 @@ MonoBehaviour:
   damage: 20
   colliderDistance: 0.25
   boxCollider: {fileID: 6075534320800891404}
+  BackcolliderDistance: 0
+  Backrange: 0
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -220,6 +222,7 @@ MonoBehaviour:
   MaxHealth: 152
   CurrentHealth: 0
   damage: 0
+  damageParticles: {fileID: 7033977630136317332, guid: 01fd2c2b4265d5a40b21f61b20257acb, type: 3}
 --- !u!114 &4038150825047441291
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -236,6 +239,8 @@ MonoBehaviour:
   rightEdge: {fileID: 0}
   enemy: {fileID: 8256063767748539411}
   speed: 2.74
+  initScale: {x: 0, y: 0, z: 0}
+  movingLeft: 0
   idleDuration: 1.37
   anim: {fileID: 3079059901690696322}
 --- !u!1 &3412375974654025563
