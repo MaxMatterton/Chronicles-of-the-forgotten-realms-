@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2844552552317026800}
   - component: {fileID: 8804592084383486659}
   m_Layer: 6
-  m_Name: mike idel_0
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -125,14 +125,14 @@ MonoBehaviour:
   mybody: {fileID: 8437751193820012149}
   anim: {fileID: 4694051493730026063}
   LevelText: {fileID: 5028565641344568182, guid: 27e142f9151307a4db7759c4747ad99a, type: 3}
-  Health: {fileID: 0}
   moveSpeed: 5
   JumpPower: 10
   scoretext: {fileID: 0}
-  Ds: {fileID: 5631525875068812791, guid: 041cef73746651c45978920de040a6aa, type: 3}
   next: {fileID: 2942794579659789543, guid: 635bd114c1d2a0545be98b9ed3e49e64, type: 3}
   damage: 10
-  attackCooldown: 0
+  coinParticles: {fileID: 6750350852010765266, guid: 40cffe7f0c981fb4bb713a96afe3c531, type: 3}
+  attackCooldown1: 0
+  attackCooldown2: 0
   range: 2.32
   colliderDistance: 0.1
   boxCollider: {fileID: 2844552552317026800}
