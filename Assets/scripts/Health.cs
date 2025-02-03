@@ -32,8 +32,6 @@ public class Health : MonoBehaviour
 
         if (CurrentHealth > 0)
         {
-            if ()
-            anim.SetTrigger("hurt");
             DamageParticles();
         }
         else
