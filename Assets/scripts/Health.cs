@@ -1,15 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class Health : MonoBehaviour
 {
     public HealthBar Hb;
     Animator anim;
+    public playermovement pm;
 
     public int MaxHealth = 100;
     public float CurrentHealth;
-    public float damage;
+    public float DeadDelay;
     bool Dead;
 
     //particle system
@@ -25,14 +27,14 @@ public class Health : MonoBehaviour
 
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage,Vector2 AttackDirection)
     {
         CurrentHealth -= damage;
         Hb.sethealth(CurrentHealth);
 
         if (CurrentHealth > 0)
         {
-            DamageParticles();
+            DamageParticles(AttackDirection);
         }
         else
         {
@@ -50,7 +52,7 @@ public class Health : MonoBehaviour
                 else
                 {
                     anim.SetTrigger("dead");
-                    Invoke("DeadEnemy",2);
+                    Invoke("DeadEnemy",DeadDelay);
                     Dead = true;
                     GetComponent<EnemyPatrol>().enabled = false;
                 }
@@ -60,11 +62,19 @@ public class Health : MonoBehaviour
     }
     public void DeadEnemy()
     {
-        Destroy(this.gameObject);
+        if (this.gameObject.CompareTag("Boss1"))
+        {
+            pm.KeyCollected = true;
+            Destroy(this.gameObject);
+        }
+        else{
+            Destroy(this.gameObject);
+        }
     }
 
-    public void DamageParticles()
+    public void DamageParticles(Vector2 AttackDirection)
     {
+        Quaternion rot = Quaternion.FromToRotation(Vector2.right,AttackDirection);
         damageParticlesInstance = Instantiate(damageParticles, transform.position, Quaternion.identity);
     }
 }

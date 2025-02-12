@@ -8,6 +8,8 @@ TagManager:
   - Death
   - coins
   - waystone
+  - Stage2
+  - Boss1
   layers:
   - Default
   - TransparentFX

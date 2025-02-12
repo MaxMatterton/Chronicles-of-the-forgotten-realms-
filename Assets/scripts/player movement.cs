@@ -6,17 +6,21 @@ using TMPro;
 
 public class playermovement : MonoBehaviour
 {
-    // Start is called before the first frame update
+    
+    public TextMeshProUGUI scoretext;
     public Rigidbody2D mybody;
     public Animator anim;
     public GameObject LevelText;
+    public GameObject next;
+
     [SerializeField] float moveSpeed;
     [SerializeField] float JumpPower;
-    [SerializeField] TextMeshProUGUI scoretext;
+    
     float scorecount;
-    public GameObject next;
+    public bool KeyCollected = false;
+    
+    //Script References 
     Health EnemyHealth;
-
 
     //ground check
     bool grounded;
@@ -24,28 +28,42 @@ public class playermovement : MonoBehaviour
     //Health
     public float damage;
     bool Dead;
+    
+    //Heavy Attack
+    public HeavyAttack Ha;
+    public float heavyAttackDamage;
+    public float heavyAttackEnergy;
+    public float heavyAttackMaxEnergy;
 
     //particle system
-    [SerializeField] private ParticleSystem coinParticles;
-    private ParticleSystem coinParticlesInstance;
+    [SerializeField] ParticleSystem coinParticles;
+    ParticleSystem coinParticlesInstance;
 
     [Header("Attack Parameters")]
-    [SerializeField] private float attackCooldown1;
-    [SerializeField] private float attackCooldown2;
-    private float cooldownTimer1 = Mathf.Infinity;
-    private float cooldownTimer2 = Mathf.Infinity;
-    [SerializeField] private float range;
+
+    [SerializeField] float attackCooldown1;
+    [SerializeField] float attackCooldown2;
+
+    float cooldownTimer1 = Mathf.Infinity;
+    float cooldownTimer2 = Mathf.Infinity;
+
+    [SerializeField] float range;
 
     [Header("Collider Parameters")]
-    [SerializeField] private float colliderDistance;
-    [SerializeField] private BoxCollider2D boxCollider;
+    
+    [SerializeField] float colliderDistance;
+    [SerializeField] BoxCollider2D boxCollider;
 
     [Header("Player Layer")]
-    [SerializeField] private LayerMask EnemyLayer;
+
+    [SerializeField] LayerMask EnemyLayer;
 
 
     void Update()
     {
+        Ha.setEnergyBar(heavyAttackMaxEnergy);
+        Ha.setEnergy(heavyAttackEnergy);
+
         cooldownTimer1 += Time.deltaTime;
         cooldownTimer2 += Time.deltaTime;
 
@@ -53,7 +71,7 @@ public class playermovement : MonoBehaviour
 
         float Horizontalinput = Input.GetAxis("Horizontal");
 
-
+        //Flip
         if (Horizontalinput > 0.01f)
         {
             transform.localScale = new Vector3(5.1f, 5.1f, 5.1f);
@@ -63,13 +81,13 @@ public class playermovement : MonoBehaviour
             transform.localScale = new Vector3(-5.1f, 5.1f, 5.1f);
         }
 
+        //Jump
         if (Input.GetKey(KeyCode.Space) && grounded == true)
         {
             jump();
         }
 
         //Attacking
-
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             if (PlayerRange())
@@ -79,8 +97,9 @@ public class playermovement : MonoBehaviour
                     cooldownTimer1 = 0;
                     anim.SetTrigger("attack");
                     damageEnemy(damage);
+                    heavyAttackEnergy += 1;
+                    Ha.setEnergy(heavyAttackEnergy);
                 }
-
             }
             else if (cooldownTimer1 >= attackCooldown1)
             {
@@ -88,7 +107,7 @@ public class playermovement : MonoBehaviour
                 anim.SetTrigger("attack");
             }
         }
-        else if (Input.GetKeyDown(KeyCode.Mouse1))
+        else if (Input.GetKeyDown(KeyCode.Mouse1) && heavyAttackEnergy >= heavyAttackMaxEnergy)
         {
             if (PlayerRange())
             {
@@ -96,7 +115,9 @@ public class playermovement : MonoBehaviour
                 {
                     cooldownTimer2 = 0;
                     anim.SetTrigger("attack2");
-                    damageEnemy(damage);
+                    damageEnemy(heavyAttackDamage);
+                    heavyAttackEnergy = 0;
+                    Ha.setEnergy(heavyAttackEnergy);
                 }
 
             }
@@ -125,6 +146,13 @@ public class playermovement : MonoBehaviour
         {
             grounded = true;
         }
+        if (other.gameObject.CompareTag("Stage2"))
+        {
+            if (KeyCollected == true)
+            {
+                Destroy(other.gameObject);
+            }
+        }
 
     }
 
@@ -149,6 +177,7 @@ public class playermovement : MonoBehaviour
             scoretext.text = "coins:" + scorecount.ToString();
             CoinParticles(other);
         }
+        
     }
 
     void OnTriggerExit2D(Collider2D other)
@@ -183,11 +212,13 @@ public class playermovement : MonoBehaviour
     }
     public void damageEnemy(float damage)
     {
-         EnemyHealth.TakeDamage(damage);
+         EnemyHealth.TakeDamage(damage,transform.right);
     }
 
     public void CoinParticles(Collider2D other)
     {
         coinParticlesInstance = Instantiate(coinParticles, other.transform.position, Quaternion.identity);
+
+        
     }
 }

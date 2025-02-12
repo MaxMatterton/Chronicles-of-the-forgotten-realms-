@@ -10,7 +10,7 @@ public class PlayerHealth : MonoBehaviour
 
     public int MaxHealth = 100;
     public float CurrentHealth;
-    float damage;
+
     bool Dead;
 
     void Start()
@@ -20,6 +20,10 @@ public class PlayerHealth : MonoBehaviour
         Hb.setmaxHealth(MaxHealth);
         CurrentHealth = MaxHealth;
 
+    }
+    void Update()
+    {
+        Hb.sethealth(CurrentHealth);
     }
 
     public void TakeDamage(float damage)
