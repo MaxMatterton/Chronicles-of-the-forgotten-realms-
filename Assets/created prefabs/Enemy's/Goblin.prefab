@@ -239,9 +239,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Hb: {fileID: 2152342424373608348}
+  pm: {fileID: 0}
   MaxHealth: 120
   CurrentHealth: 0
-  damage: 20
+  DeadDelay: 0.4
   damageParticles: {fileID: 7033977630136317332, guid: 01fd2c2b4265d5a40b21f61b20257acb, type: 3}
 --- !u!1 &1173680070136524836
 GameObject:

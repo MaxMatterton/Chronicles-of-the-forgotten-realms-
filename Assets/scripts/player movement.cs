@@ -20,7 +20,7 @@ public class playermovement : MonoBehaviour
     public bool KeyCollected = false;
     
     //Script References 
-    Health EnemyHealth;
+    EnemyHealth EnemyHealth;
 
     //ground check
     bool grounded;
@@ -199,7 +199,7 @@ public class playermovement : MonoBehaviour
             0, Vector2.left, 0, EnemyLayer);
 
         if (hit.collider != null)
-            EnemyHealth = hit.transform.GetComponent<Health>();
+            EnemyHealth = hit.transform.GetComponent<EnemyHealth>();
 
         return hit.collider != null;
     }

@@ -220,9 +220,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Hb: {fileID: 3406068270569358078}
   pm: {fileID: 0}
-  MaxHealth: 100
+  MaxHealth: 150
   CurrentHealth: 0
-  damage: 0
+  DeadDelay: 0
   damageParticles: {fileID: 7033977630136317332, guid: 01fd2c2b4265d5a40b21f61b20257acb, type: 3}
 --- !u!114 &4038150825047441291
 MonoBehaviour:
@@ -242,7 +242,7 @@ MonoBehaviour:
   speed: 2.74
   initScale: {x: 0, y: 0, z: 0}
   movingLeft: 0
-  idleDuration: 1.37
+  idleDuration: 1.3
   anim: {fileID: 3079059901690696322}
 --- !u!1 &3412375974654025563
 GameObject:
