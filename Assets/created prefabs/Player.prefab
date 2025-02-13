@@ -129,6 +129,7 @@ MonoBehaviour:
   next: {fileID: 2942794579659789543, guid: 635bd114c1d2a0545be98b9ed3e49e64, type: 3}
   moveSpeed: 5
   JumpPower: 10
+  KeyCollected: 0
   damage: 10
   Ha: {fileID: 0}
   heavyAttackDamage: 100
@@ -137,8 +138,8 @@ MonoBehaviour:
   coinParticles: {fileID: 6750350852010765266, guid: 40cffe7f0c981fb4bb713a96afe3c531, type: 3}
   attackCooldown1: 0.5
   attackCooldown2: 0
-  range: 2.32
-  colliderDistance: 0.1
+  range: 1.77
+  colliderDistance: 0.154
   boxCollider: {fileID: 2844552552317026800}
   EnemyLayer:
     serializedVersion: 2
