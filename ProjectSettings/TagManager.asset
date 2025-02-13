@@ -10,6 +10,7 @@ TagManager:
   - waystone
   - Stage2
   - Boss1
+  - Chest
   layers:
   - Default
   - TransparentFX

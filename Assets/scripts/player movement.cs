@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Mathematics;
 using TMPro;
+using Cainos.PixelArtPlatformer_VillageProps;
 
 public class playermovement : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class playermovement : MonoBehaviour
     public Animator anim;
     public GameObject LevelText;
     public GameObject next;
+    public Chest chest;
 
     [SerializeField] float moveSpeed;
     [SerializeField] float JumpPower;
@@ -167,6 +169,10 @@ public class playermovement : MonoBehaviour
         if (other.gameObject.CompareTag("Finish"))
         {
             next.SetActive(true);
+        }
+        if (other.gameObject.CompareTag("Chest"))
+        {
+            other.GetComponent<Chest>().IsOpened = KeyCollected;
         }
 
         if (other.gameObject.tag == "coins")
