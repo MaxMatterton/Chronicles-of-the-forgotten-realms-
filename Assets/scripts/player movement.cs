@@ -23,6 +23,7 @@ public class playermovement : MonoBehaviour
     
     //Script References 
     EnemyHealth EnemyHealth;
+    BossHealth bossHealth;
 
     //ground check
     bool grounded;
@@ -205,7 +206,15 @@ public class playermovement : MonoBehaviour
             0, Vector2.left, 0, EnemyLayer);
 
         if (hit.collider != null)
-            EnemyHealth = hit.transform.GetComponent<EnemyHealth>();
+            if (EnemyHealth != null)
+            {
+                EnemyHealth = hit.transform.GetComponent<EnemyHealth>();
+            }
+            else
+            {
+                bossHealth = hit.transform.GetComponent<BossHealth>();
+            }
+            
 
         return hit.collider != null;
     }
@@ -218,7 +227,15 @@ public class playermovement : MonoBehaviour
     }
     public void damageEnemy(float damage)
     {
-         EnemyHealth.TakeDamage(damage,transform.right);
+        if (EnemyHealth != null)
+        {
+            EnemyHealth.TakeDamage(damage,transform.right);
+        }
+        else
+        {
+            bossHealth.TakeDamage(damage,transform.right);
+        }
+        
     }
 
     public void CoinParticles(Collider2D other)

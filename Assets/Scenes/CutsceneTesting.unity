@@ -395,7 +395,6 @@ GameObject:
   - component: {fileID: 1297363025}
   - component: {fileID: 1297363028}
   - component: {fileID: 1297363027}
-  - component: {fileID: 1297363026}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -423,28 +422,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1297363026
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1297363024}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6c55f06664e3dd4aa1594e70b14be4b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  textMesh: {fileID: 1681258457}
-  textLines:
-  - Greetings Traveller!!
-  - My name is Prathum Kumar
-  - I am an ancient being sealed in this artifact.
-  - 
-  - 
-  - 
-  - 
-  textSpeed: 0.08
 --- !u!114 &1297363027
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3768,15 +3745,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 441068401862958070, guid: 76e49e93625203d4a9394b1ef7157223, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 441068401862958070, guid: 76e49e93625203d4a9394b1ef7157223, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 441068401862958070, guid: 76e49e93625203d4a9394b1ef7157223, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 441068401862958070, guid: 76e49e93625203d4a9394b1ef7157223, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3812,6 +3789,117 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 4694051493730026063, guid: 76e49e93625203d4a9394b1ef7157223, type: 3}
   m_PrefabInstance: {fileID: 1426061652}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1629682499
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1629682502}
+  - component: {fileID: 1629682501}
+  - component: {fileID: 1629682500}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1629682500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1629682499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6c55f06664e3dd4aa1594e70b14be4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textMesh: {fileID: 1681258457}
+  textLines:
+  - Hello Traveller
+  - I am a gaurdian to guide u on ur journey
+  - i hope u will succed
+  textSpeed: 0.05
+--- !u!114 &1629682501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1629682499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: 3a5ef624b27a08c40b0960f8566e9ec0, type: 2}
+    - {fileID: 11400000, guid: c3efd61a5020cb345a60245e3d85a514, type: 2}
+    - {fileID: 11400000, guid: 062a4098d8a87424fa6c2b53b9b6d291, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1629682500}
+          m_TargetAssemblyTypeName: CutSceneText, Assembly-CSharp
+          m_MethodName: StartDialogue
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1629682500}
+          m_TargetAssemblyTypeName: CutSceneText, Assembly-CSharp
+          m_MethodName: NextLine
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1629682500}
+          m_TargetAssemblyTypeName: CutSceneText, Assembly-CSharp
+          m_MethodName: 
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!4 &1629682502
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1629682499}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -16.264025, y: 8.771458, z: -1.9279181}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1681258455
 GameObject:
   m_ObjectHideFlags: 0
@@ -4000,10 +4088,12 @@ PlayableDirector:
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
   m_SceneBindings:
-  - key: {fileID: -1921761118909882037, guid: 48e89b69d03d75b47809156091af5797, type: 2}
+  - key: {fileID: 8164297089391150559, guid: 48e89b69d03d75b47809156091af5797, type: 2}
     value: {fileID: 1426061653}
-  - key: {fileID: -8445192852890710637, guid: 48e89b69d03d75b47809156091af5797, type: 2}
-    value: {fileID: 1297363024}
+  - key: {fileID: -6360218915580736972, guid: 48e89b69d03d75b47809156091af5797, type: 2}
+    value: {fileID: 1426061653}
+  - key: {fileID: -4405611048115305007, guid: 48e89b69d03d75b47809156091af5797, type: 2}
+    value: {fileID: 1629682501}
   m_ExposedReferences:
     m_References:
     - e03916ccf3cdea14e84745de011f7811: {fileID: 1681258455}
@@ -4117,3 +4207,4 @@ SceneRoots:
   - {fileID: 1802295560}
   - {fileID: 2044144087}
   - {fileID: 762150445}
+  - {fileID: 1629682502}

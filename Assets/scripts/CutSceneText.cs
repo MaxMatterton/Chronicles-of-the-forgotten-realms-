@@ -15,48 +15,37 @@ public class CutSceneText : MonoBehaviour
     void Start()
     {
         textMesh.text = string.Empty;
-        StartDialoge();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (textMesh.text == textLines[index])
-            {
-                nextline();
-            }
-            else{
-                StopAllCoroutines();
-                textMesh.text = textLines[index];
-            }
-        }
-    }
-    void StartDialoge()
+    // 🟢 This function will be triggered by the Signal Receiver
+    public void StartDialogue()
     {
         index = 0;
+        textMesh.text = string.Empty; // Reset text
         StartCoroutine(TypeLine());
     }
+
     IEnumerator TypeLine()
     {
-        foreach (char line in textLines[index].ToCharArray())
+        foreach (char letter in textLines[index].ToCharArray())
         {
-            textMesh.text += line;
+            textMesh.text += letter;
             yield return new WaitForSeconds(textSpeed);
         }
     }
-    void nextline()
+
+    public void NextLine()
     {
         if (index < textLines.Length - 1)
         {
-            index ++;
+            index++;
             textMesh.text = string.Empty;
             StartCoroutine(TypeLine());
         }
         else
         {
-            textMesh.text = string.Empty;
+            textMesh.text = string.Empty; // Clear text when dialogue ends
         }
     }
+
 }

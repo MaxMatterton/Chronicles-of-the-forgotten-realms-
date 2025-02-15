@@ -11,6 +11,7 @@ TagManager:
   - Stage2
   - Boss1
   - Chest
+  - ground
   layers:
   - Default
   - TransparentFX
@@ -18,9 +19,9 @@ TagManager:
   - 
   - Water
   - UI
-  - player
-  - enemy
-  - 
+  - Player
+  - Enemy
+  - Boss
   - 
   - 
   - 

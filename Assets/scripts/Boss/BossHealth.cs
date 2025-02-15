@@ -4,64 +4,72 @@ using UnityEngine;
 
 public class BossHealth : MonoBehaviour
 {
-     public HealthBar Hb;
-    Animator anim;
+    public HealthBar Hb;
+    private Animator anim;
     public playermovement pm;
 
     public int MaxHealth = 100;
     public float CurrentHealth;
     public float DeathDelay;
-    bool Dead;
+    private bool Dead;
 
-    //particle system
     [SerializeField] private ParticleSystem damageParticles;
     private ParticleSystem damageParticlesInstance;
+
+    private RangedBossAttack bossAttack;
+    private EnemyPatrol enemyPatrol;
+    private Collider2D bossCollider;
 
     void Start()
     {
         anim = GetComponent<Animator>();
+        bossAttack = GetComponent<RangedBossAttack>();
+        enemyPatrol = GetComponent<EnemyPatrol>();
+        bossCollider = GetComponent<Collider2D>();
 
-        Hb.setmaxHealth(MaxHealth);
         CurrentHealth = MaxHealth;
-
+        Hb.setmaxHealth(MaxHealth);
     }
 
-    public void TakeDamage(float damage,Vector2 AttackDirection)
+    public void TakeDamage(float damage, Vector2 AttackDirection)
     {
         CurrentHealth -= damage;
-        Hb.sethealth(CurrentHealth);
+        Hb.sethealth(CurrentHealth); // Update health bar after setting health
 
         if (CurrentHealth > 0)
         {
             DamageParticles(AttackDirection);
+            Hb.sethealth(CurrentHealth);
         }
         else
         {
             if (!Dead)
             {
-                anim.SetTrigger("dead");
-                Invoke("DeadEnemy",DeathDelay);
                 Dead = true;
-                GetComponent<EnemyPatrol>().enabled = false;
+                anim.SetTrigger("dead");
+
+                // Disable attack & movement
+                if (bossAttack != null) bossAttack.enabled = false;
+                if (enemyPatrol != null) enemyPatrol.enabled = false;
+
+                Invoke("DeadEnemy", DeathDelay);
             }
         }
-
     }
-    public void DeadEnemy()
+
+    private void DeadEnemy()
     {
-        if (this.gameObject.CompareTag("Boss1"))
+        if (gameObject.CompareTag("Boss1"))
         {
             pm.KeyCollected = true;
-            Destroy(this.gameObject);
         }
-        else{
-            Destroy(this.gameObject);
-        }
+
+        Destroy(gameObject);
     }
 
-    public void DamageParticles(Vector2 AttackDirection)
+    private void DamageParticles(Vector2 AttackDirection)
     {
-        Quaternion rot = Quaternion.FromToRotation(Vector2.right,AttackDirection);
+        Quaternion rot = Quaternion.FromToRotation(Vector2.right, AttackDirection);
         damageParticlesInstance = Instantiate(damageParticles, transform.position, Quaternion.identity);
     }
 }
