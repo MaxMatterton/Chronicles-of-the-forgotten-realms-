@@ -47,10 +47,18 @@ public class HealthButton : MonoBehaviour
     {
         if (energyPotionAmount > 0)
         {
+            if (pm.heavyAttackEnergy == pm.heavyAttackMaxEnergy)
+        {
+            UnityEngine.Debug.Log("hello");
+        }
+        else{
             pm.heavyAttackEnergy += 10;
             energyPotionAmount --;
             PotionAmount2.text = "X" + energyPotionAmount.ToString();
         }
+            
+        }
+        
     }
 
     void Switch()

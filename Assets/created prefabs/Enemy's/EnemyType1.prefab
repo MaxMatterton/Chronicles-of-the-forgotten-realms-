@@ -480,9 +480,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Hb: {fileID: 8745151785981953661}
+  pm: {fileID: 0}
   MaxHealth: 100
   CurrentHealth: 0
-  damage: 0
+  DeadDelay: 1.2
   damageParticles: {fileID: 7033977630136317332, guid: 01fd2c2b4265d5a40b21f61b20257acb, type: 3}
 --- !u!114 &9006016844882200977
 MonoBehaviour:

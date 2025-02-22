@@ -206,14 +206,11 @@ public class playermovement : MonoBehaviour
             0, Vector2.left, 0, EnemyLayer);
 
         if (hit.collider != null)
-            if (EnemyHealth != null)
-            {
-                EnemyHealth = hit.transform.GetComponent<EnemyHealth>();
-            }
-            else
-            {
-                bossHealth = hit.transform.GetComponent<BossHealth>();
-            }
+        {
+            EnemyHealth = hit.transform.GetComponent<EnemyHealth>();
+            bossHealth = hit.transform.GetComponent<BossHealth>();
+        }
+            
             
 
         return hit.collider != null;
