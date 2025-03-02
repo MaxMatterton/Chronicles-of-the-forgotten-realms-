@@ -5,7 +5,7 @@ using Unity.Mathematics;
 using TMPro;
 using Cainos.PixelArtPlatformer_VillageProps;
 
-public class playermovement : MonoBehaviour
+public class playermovement : MonoBehaviour,ISaveable
 {
     
     public TextMeshProUGUI scoretext;
@@ -20,6 +20,7 @@ public class playermovement : MonoBehaviour
     
     float scorecount;
     public bool KeyCollected = false;
+    int HighScore;
     
     //Script References 
     EnemyHealth EnemyHealth;
@@ -240,5 +241,12 @@ public class playermovement : MonoBehaviour
         coinParticlesInstance = Instantiate(coinParticles, other.transform.position, Quaternion.identity);
 
         
+    }
+
+    public void Save()
+    {
+        SaveData WorldData = new SaveData(HighScore);
+
+        SaveLoad.instance.SaveInfo(WorldData);
     }
 }
