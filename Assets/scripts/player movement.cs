@@ -249,4 +249,9 @@ public class playermovement : MonoBehaviour,ISaveable
 
         SaveLoad.instance.SaveInfo(WorldData);
     }
+
+    public void Load () {
+        
+        
+    }
 }

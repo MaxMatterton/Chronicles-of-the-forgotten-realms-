@@ -26,6 +26,7 @@ public class SaveLoad : MonoBehaviour
         File.WriteAllText(saveFile, savedata);
         Debug.Log(savedata);    
     }
+    //public void LoadInfo()
 
 
 #if UNITY_EDITOR
@@ -74,4 +75,5 @@ public class SaveData
 public interface ISaveable
 {
     public void Save();
+    public void Load();
 }
