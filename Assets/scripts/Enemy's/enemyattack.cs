@@ -26,7 +26,7 @@ public class enemyattack : MonoBehaviour
 
     //References
     private Animator anim;
-    private PlayerHealth Health;
+    private PlayerHealth Playerhealth;
     private EnemyPatrol enemyPatrol;
 
     private void Awake()
@@ -64,7 +64,7 @@ public class enemyattack : MonoBehaviour
             0, Vector2.left, 0, playerLayer);
 
         if (hit.collider != null)
-            Health = hit.transform.GetComponent<PlayerHealth>();
+            Playerhealth = hit.transform.GetComponent<PlayerHealth>();
 
         return hit.collider != null;
     }
@@ -76,7 +76,7 @@ public class enemyattack : MonoBehaviour
             0, Vector2.left, 0, playerLayer);
 
         if (Behindhit.collider != null)
-            Health = Behindhit.transform.GetComponent<PlayerHealth>();
+            Playerhealth = Behindhit.transform.GetComponent<PlayerHealth>();
 
         return Behindhit.collider != null;
     }
@@ -94,7 +94,7 @@ public class enemyattack : MonoBehaviour
     private void DamagePlayer()
     {
         if (PlayerInSight())
-            Health.TakeDamage(damage);
+            Playerhealth.TakeDamage(damage);
     }
     
     
