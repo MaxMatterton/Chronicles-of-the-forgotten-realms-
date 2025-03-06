@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
@@ -6,33 +7,33 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     public HealthBar Hb;
-    Animator anim;
     public playermovement pm;
+    Animator anim;
+    EnemyStats Enemystats = new EnemyStats();
 
-    public int MaxHealth = 100;
-    public float CurrentHealth;
     public float DeadDelay;
     bool Dead;
 
     //particle system
-    [SerializeField] private ParticleSystem damageParticles;
-    private ParticleSystem damageParticlesInstance;
+    [SerializeField] ParticleSystem damageParticles;
+    ParticleSystem damageParticlesInstance;
 
     void Start()
     {
         anim = GetComponent<Animator>();
 
-        Hb.setmaxHealth(MaxHealth);
-        CurrentHealth = MaxHealth;
+        Hb.setmaxHealth(Enemystats.EnemyMaxHealth);
+        Enemystats.EnemyHealth = Enemystats.EnemyMaxHealth;
 
     }
 
-    public void TakeDamage(float damage,Vector2 AttackDirection)
+    public void TakeDamage(float Damage,Vector2 AttackDirection)
     {
-        CurrentHealth -= damage;
-        Hb.sethealth(CurrentHealth);
+        float FinalDamage = (float)Math.Round(Mathf.Max(10*(Damage*Damage)/10*(Damage+Enemystats.EnemyDefense), 0),2);
+        Enemystats.EnemyHealth -= FinalDamage;
+        Hb.sethealth(Enemystats.EnemyHealth);
 
-        if (CurrentHealth > 0)
+        if (Enemystats.EnemyHealth > 0)
         {
             DamageParticles(AttackDirection);
         }
@@ -41,11 +42,11 @@ public class EnemyHealth : MonoBehaviour
             if (!Dead)
             {
 
-                if (GetComponent<playermovement>() != null)
+                if (GetComponent<EnemyPatrol>() != null)
 
                 {
                     anim.SetTrigger("dead");
-                    GetComponent<playermovement>().enabled = false;
+                    GetComponent<EnemyPatrol>().enabled = false;
                     Dead = true;
 
                 }

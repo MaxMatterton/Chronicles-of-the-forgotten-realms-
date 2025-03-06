@@ -13,7 +13,6 @@ public class playermovement : MonoBehaviour,ISaveable
     public Animator anim;
     public GameObject LevelText;
     public GameObject next;
-    public Chest chest;
 
     [SerializeField] float moveSpeed;
     [SerializeField] float JumpPower;
@@ -25,6 +24,9 @@ public class playermovement : MonoBehaviour,ISaveable
     //Script References 
     EnemyHealth EnemyHealth;
     BossHealth bossHealth;
+    public static PlayerStats playerstats;
+    public Chest chest;
+    public HeavyAttack Ha;
 
     //ground check
     bool grounded;
@@ -34,10 +36,8 @@ public class playermovement : MonoBehaviour,ISaveable
     bool Dead;
     
     //Heavy Attack
-    public HeavyAttack Ha;
     public float heavyAttackDamage;
-    public float heavyAttackEnergy;
-    public float heavyAttackMaxEnergy;
+    
 
     //particle system
     [SerializeField] ParticleSystem coinParticles;
@@ -62,11 +62,14 @@ public class playermovement : MonoBehaviour,ISaveable
 
     [SerializeField] LayerMask EnemyLayer;
 
-
+    private void Awake() {
+        // Initialize the player stats script
+        playerstats = new PlayerStats();
+    }
     void Update()
     {
-        Ha.setEnergyBar(heavyAttackMaxEnergy);
-        Ha.setEnergy(heavyAttackEnergy);
+        Ha.setEnergyBar(playerstats.MaxEnergy);
+        Ha.setEnergy(playerstats.Energy);
 
         cooldownTimer1 += Time.deltaTime;
         cooldownTimer2 += Time.deltaTime;
@@ -101,8 +104,8 @@ public class playermovement : MonoBehaviour,ISaveable
                     cooldownTimer1 = 0;
                     anim.SetTrigger("attack");
                     damageEnemy(damage);
-                    heavyAttackEnergy += 1;
-                    Ha.setEnergy(heavyAttackEnergy);
+                    playerstats.Energy += 1;
+                    Ha.setEnergy(playerstats.Energy);
                 }
             }
             else if (cooldownTimer1 >= attackCooldown1)
@@ -111,7 +114,7 @@ public class playermovement : MonoBehaviour,ISaveable
                 anim.SetTrigger("attack");
             }
         }
-        else if (Input.GetKeyDown(KeyCode.Mouse1) && heavyAttackEnergy >= heavyAttackMaxEnergy)
+        else if (Input.GetKeyDown(KeyCode.Mouse1) && playerstats.Energy >= playerstats.MaxEnergy)
         {
             if (PlayerRange())
             {
@@ -120,8 +123,8 @@ public class playermovement : MonoBehaviour,ISaveable
                     cooldownTimer2 = 0;
                     anim.SetTrigger("attack2");
                     damageEnemy(heavyAttackDamage);
-                    heavyAttackEnergy = 0;
-                    Ha.setEnergy(heavyAttackEnergy);
+                    playerstats.Energy = 0;
+                    Ha.setEnergy(playerstats.Energy);
                 }
 
             }

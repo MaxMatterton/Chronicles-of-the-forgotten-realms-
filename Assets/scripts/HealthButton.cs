@@ -14,30 +14,27 @@ public class HealthButton : MonoBehaviour
     [Space]
     public GameObject EnergyPotion;
     public TextMeshProUGUI PotionAmount2;
-    public int energyPotionAmount;
-    [Space]
-    public PlayerHealth ph;
-    public playermovement pm;
-
+    public int energyPotionAmount; 
+    
     void Start()
     {
         PotionAmount.text = "X" + healthPotionAmount.ToString();
         PotionAmount2.text = "X" + energyPotionAmount.ToString();
     }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.LeftArrow))
         {
             Switch();
         }
-
     }
     
     public void UseHealthPotion()
     {
         if (healthPotionAmount > 0)
         {
-            ph.CurrentHealth += 20;
+            playermovement.playerstats.Health += 20;
             healthPotionAmount --; 
             PotionAmount.text = "X" + healthPotionAmount.ToString();
             
@@ -47,12 +44,12 @@ public class HealthButton : MonoBehaviour
     {
         if (energyPotionAmount > 0)
         {
-            if (pm.heavyAttackEnergy == pm.heavyAttackMaxEnergy)
+            if (playermovement.playerstats.Energy == playermovement.playerstats.MaxEnergy)
         {
             UnityEngine.Debug.Log("hello");
         }
         else{
-            pm.heavyAttackEnergy += 10;
+            playermovement.playerstats.Energy += 10;
             energyPotionAmount --;
             PotionAmount2.text = "X" + energyPotionAmount.ToString();
         }

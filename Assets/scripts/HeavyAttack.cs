@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class HeavyAttack : MonoBehaviour
 {
     public Slider slider;
+    
 
     public void setEnergyBar(float Energy)
     {

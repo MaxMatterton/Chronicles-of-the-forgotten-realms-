@@ -12,7 +12,7 @@ public class EnemyPatrol : MonoBehaviour
     [SerializeField] private Transform enemy;
 
     [Header("Movement parameters")]
-    [SerializeField] private float speed;
+    EnemyStats Em = new EnemyStats();
     public Vector3 initScale;
     public bool movingLeft;
 
@@ -70,7 +70,7 @@ public class EnemyPatrol : MonoBehaviour
             initScale.y, initScale.z);
 
         //Move in that direction
-        enemy.position = new Vector3(enemy.position.x + Time.deltaTime * _direction * speed,
+        enemy.position = new Vector3(enemy.position.x + Time.deltaTime * _direction * Em.EnemySpeed,
             enemy.position.y, enemy.position.z);
     }
     public void lookatplayer()
