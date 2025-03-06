@@ -8,30 +8,27 @@ public class PlayerHealth : MonoBehaviour
     public GameObject Ds;
     Animator anim;
 
-    public int MaxHealth = 100;
-    public float CurrentHealth;
-
     bool Dead;
 
     void Start()
     {
         anim = GetComponent<Animator>();
 
-        Hb.setmaxHealth(MaxHealth);
-        CurrentHealth = MaxHealth;
+        Hb.setmaxHealth(playermovement.playerstats.MaxHealth);
+        playermovement.playerstats.Health = playermovement.playerstats.MaxHealth;
 
     }
     void Update()
     {
-        Hb.sethealth(CurrentHealth);
+        Hb.sethealth(playermovement.playerstats.Health);
     }
 
     public void TakeDamage(float damage)
     {
-        CurrentHealth -= damage;
-        Hb.sethealth(CurrentHealth);
+        playermovement.playerstats.GetHurt(damage);
+        Hb.sethealth(playermovement.playerstats.Health);
 
-        if (CurrentHealth > 0)
+        if (playermovement.playerstats.Health > 0)
         {
             anim.SetTrigger("hurt");
         }
@@ -56,7 +53,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Death"))
         {
-            TakeDamage(MaxHealth);
+            TakeDamage(playermovement.playerstats.MaxHealth);
         }
     }
         

@@ -6,6 +6,14 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerStats
 {
+    public static PlayerStats instance;
+
+    //Classes
+    bool Knight;
+    bool Archer;
+    bool Mage;
+    bool Warrior;
+    
     //Health
     public float MaxHealth;
     public int MaxHealthPoints;
@@ -21,20 +29,21 @@ public class PlayerStats
     public float Defense;
     public float DefensePoints;
 
+    //Heavy Attack
+    public int MaxEnergy;
+    public float Energy;
+
     //Upgrading
     public int SkillPoints;
 
-    public void TakeDamage(float Damage)
+    private void Awake() {
+        instance = this;
+    }
+    public void GetHurt(float Damage)
     {
         Defense = Defense + DefensePoints*1.1f;
         float FinalDamage = (float)Math.Round(Mathf.Max(10*(Damage*Damage)/10*(Damage+Defense), 0),2);
         Health -= FinalDamage;
-        if (Health <= 0) 
-        {
-            Health = 0;
-            Debug.Log("Player is dead");
-
-        }
     }
 
     public void Heal(float Amount)
@@ -46,10 +55,42 @@ public class PlayerStats
         }
     }
     public void SetStats () {
-        AttackPower = AttackPower + AttackPowerPoints * 1.1F;
-        Speed = Speed + SpeedPoints * 1.1F;
-        Defense = Defense + DefensePoints * 1.1F;
-        MaxHealth = MaxHealth + MaxHealthPoints * 1.1F;
+
+        if (Knight)
+        {
+            AttackPower = AttackPower + AttackPowerPoints * 1.1F;
+            Speed = Speed + SpeedPoints * 1.1F;
+            Defense = Defense + DefensePoints * 1.1F;
+            MaxHealth = MaxHealth + MaxHealthPoints * 1.1F;
+        }
+        else if (Mage)
+        {
+            AttackPower = AttackPower + AttackPowerPoints * 1.1F;
+            Speed = Speed + SpeedPoints * 1.1F;
+            Defense = Defense + DefensePoints * 1.1F;
+            MaxHealth = MaxHealth + MaxHealthPoints * 1.1F;
+        }
+        else if (Warrior)
+        {
+            AttackPower = AttackPower + AttackPowerPoints * 1.1F;
+            Speed = Speed + SpeedPoints * 1.1F;
+            Defense = Defense + DefensePoints * 1.1F;
+            MaxHealth = MaxHealth + MaxHealthPoints * 1.1F;
+        }
+        else if (Archer)
+        {
+            AttackPower = AttackPower + AttackPowerPoints * 1.1F;
+            Speed = Speed + SpeedPoints * 1.1F;
+            Defense = Defense + DefensePoints * 1.1F;
+            MaxHealth = MaxHealth + MaxHealthPoints * 1.1F;
+        }
+        else{
+            AttackPower = AttackPower + AttackPowerPoints * 1.1F;
+            Speed = Speed + SpeedPoints * 1.1F;
+            Defense = Defense + DefensePoints * 1.1F;
+            MaxHealth = MaxHealth + MaxHealthPoints * 1.1F;
+        }
+        
     }
 
     public void Upgrade(int Type)
