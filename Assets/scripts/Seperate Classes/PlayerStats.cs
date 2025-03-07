@@ -15,8 +15,8 @@ public class PlayerStats
     bool Warrior;
     
     //Health
-    public float MaxHealth;
-    public int MaxHealthPoints;
+    public float MaxHealth ;
+    public float MaxHealthPoints;
     public float Health;
 
     //Speed
@@ -30,7 +30,7 @@ public class PlayerStats
     public float DefensePoints;
 
     //Heavy Attack
-    public int MaxEnergy;
+    public int MaxEnergy = 10;
     public float Energy;
 
     //Upgrading
@@ -38,12 +38,6 @@ public class PlayerStats
 
     private void Awake() {
         instance = this;
-    }
-    public void GetHurt(float Damage)
-    {
-        Defense = Defense + DefensePoints*1.1f;
-        float FinalDamage = (float)Math.Round(Mathf.Max(10*(Damage*Damage)/10*(Damage+Defense), 0),2);
-        Health -= FinalDamage;
     }
 
     public void Heal(float Amount)
@@ -54,6 +48,22 @@ public class PlayerStats
             Health = MaxHealth;
         }
     }
+    public void SetPoints(float AttackPoints, float DefensePoints, float SpeedPoints,float MaxHealthPoints)
+    {
+        this.AttackPowerPoints = AttackPoints;
+        this.DefensePoints = DefensePoints;
+        this.SpeedPoints = SpeedPoints;
+        this.MaxHealthPoints = MaxHealthPoints;
+        SetStats();
+        
+
+    }
+
+    public float CalculateDamage(float damage, float defense)
+    {
+        return Mathf.Max((10 * damage * damage) / (10 * (damage + defense)), 1);
+    }
+
     public void SetStats () {
 
         if (Knight)
@@ -84,11 +94,18 @@ public class PlayerStats
             Defense = Defense + DefensePoints * 1.1F;
             MaxHealth = MaxHealth + MaxHealthPoints * 1.1F;
         }
-        else{
-            AttackPower = AttackPower + AttackPowerPoints * 1.1F;
-            Speed = Speed + SpeedPoints * 1.1F;
-            Defense = Defense + DefensePoints * 1.1F;
-            MaxHealth = MaxHealth + MaxHealthPoints * 1.1F;
+        else
+        {
+            AttackPower = (AttackPower + AttackPowerPoints) * 1.1F;
+            Speed = (Speed + SpeedPoints) * 1.1F;
+            Defense = (Defense + DefensePoints) * 1.1F;
+            MaxHealth = (MaxHealth + MaxHealthPoints) * 1.1F;
+            Health = MaxHealth;
+            Debug.Log(this.AttackPower);
+            Debug.Log(this.Health);
+            Debug.Log(this.MaxHealth);
+            Debug.Log(this.Defense);
+            Debug.Log(this.Speed);
         }
         
     }
@@ -131,7 +148,7 @@ public class PlayerStats
         PlayerPrefs.SetInt("PlayerSkillPoints", SkillPoints);
         PlayerPrefs.SetFloat("PlayerHealth", Health);
         PlayerPrefs.SetFloat("PlayerSpeed", SpeedPoints);
-        PlayerPrefs.SetInt("PlayerMaxHealthPoints", MaxHealthPoints);
+        PlayerPrefs.SetFloat("PlayerMaxHealthPoints", MaxHealthPoints);
         PlayerPrefs.SetFloat("PlayerAttackPowerPoints", AttackPowerPoints);
         PlayerPrefs.SetFloat("PlayerDefensePoints", DefensePoints);
         PlayerPrefs.Save();

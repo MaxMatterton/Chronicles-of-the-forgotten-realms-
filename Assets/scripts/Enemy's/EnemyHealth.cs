@@ -29,7 +29,7 @@ public class EnemyHealth : MonoBehaviour
 
     public void TakeDamage(float Damage,Vector2 AttackDirection)
     {
-        float FinalDamage = (float)Math.Round(Mathf.Max(10*(Damage*Damage)/10*(Damage+Enemystats.EnemyDefense), 0),2);
+        float FinalDamage = Enemystats.CalculateDamage(Damage,Enemystats.EnemyDefense);
         Enemystats.EnemyHealth -= FinalDamage;
         Hb.sethealth(Enemystats.EnemyHealth);
 
@@ -46,17 +46,11 @@ public class EnemyHealth : MonoBehaviour
 
                 {
                     anim.SetTrigger("dead");
-                    GetComponent<EnemyPatrol>().enabled = false;
-                    Dead = true;
-
-                }
-                else
-                {
-                    anim.SetTrigger("dead");
                     Invoke("DeadEnemy",DeadDelay);
                     Dead = true;
                     GetComponent<EnemyPatrol>().enabled = false;
                 }
+                
             }
         }
 

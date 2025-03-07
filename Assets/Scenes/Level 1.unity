@@ -147459,11 +147459,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 441068401862958070, guid: 76e49e93625203d4a9394b1ef7157223, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -238.34
+      value: -5.59
       objectReference: {fileID: 0}
     - target: {fileID: 441068401862958070, guid: 76e49e93625203d4a9394b1ef7157223, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -18.84
+      value: -0.43
       objectReference: {fileID: 0}
     - target: {fileID: 441068401862958070, guid: 76e49e93625203d4a9394b1ef7157223, type: 3}
       propertyPath: m_LocalPosition.z
@@ -147497,22 +147497,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1021042012434971196, guid: 76e49e93625203d4a9394b1ef7157223, type: 3}
-      propertyPath: Hb
-      value: 
-      objectReference: {fileID: 1317128394}
     - target: {fileID: 4075490175372050702, guid: 76e49e93625203d4a9394b1ef7157223, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 4075490175372050702, guid: 76e49e93625203d4a9394b1ef7157223, type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 5785656023530182903, guid: 76e49e93625203d4a9394b1ef7157223, type: 3}
-      propertyPath: Ds
-      value: 
-      objectReference: {fileID: 220525542}
     - target: {fileID: 5785656023530182903, guid: 76e49e93625203d4a9394b1ef7157223, type: 3}
       propertyPath: Ha
       value: 
@@ -147526,37 +147514,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 868067143}
     - target: {fileID: 5785656023530182903, guid: 76e49e93625203d4a9394b1ef7157223, type: 3}
-      propertyPath: moveSpeed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5785656023530182903, guid: 76e49e93625203d4a9394b1ef7157223, type: 3}
       propertyPath: scoretext
       value: 
       objectReference: {fileID: 627545027}
-    - target: {fileID: 5785656023530182903, guid: 76e49e93625203d4a9394b1ef7157223, type: 3}
-      propertyPath: coinParticles
-      value: 
-      objectReference: {fileID: 6750350852010765266, guid: 40cffe7f0c981fb4bb713a96afe3c531, type: 3}
-    - target: {fileID: 5785656023530182903, guid: 76e49e93625203d4a9394b1ef7157223, type: 3}
-      propertyPath: attackCooldown
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5785656023530182903, guid: 76e49e93625203d4a9394b1ef7157223, type: 3}
-      propertyPath: attackCooldown1
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5785656023530182903, guid: 76e49e93625203d4a9394b1ef7157223, type: 3}
-      propertyPath: damageParticles
-      value: 
-      objectReference: {fileID: 7033977630136317332, guid: 01fd2c2b4265d5a40b21f61b20257acb, type: 3}
-    - target: {fileID: 5785656023530182903, guid: 76e49e93625203d4a9394b1ef7157223, type: 3}
-      propertyPath: heavyAttackDamage
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 5785656023530182903, guid: 76e49e93625203d4a9394b1ef7157223, type: 3}
-      propertyPath: heavyAttackMaxEnergy
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 8804592084383486659, guid: 76e49e93625203d4a9394b1ef7157223, type: 3}
       propertyPath: Ds
       value: 
