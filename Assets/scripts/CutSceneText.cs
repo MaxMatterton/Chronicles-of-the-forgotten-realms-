@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEngine.Timeline;
+using UnityEngine.Playables;
 
 public class CutSceneText : MonoBehaviour
 {
@@ -29,13 +29,16 @@ public class CutSceneText : MonoBehaviour
     {
         foreach (char letter in textLines[index].ToCharArray())
         {
+
             textMesh.text += letter;
             yield return new WaitForSeconds(textSpeed);
+
         }
     }
 
     public void NextLine()
     {
+        
         if (index < textLines.Length - 1)
         {
             index++;
@@ -46,6 +49,10 @@ public class CutSceneText : MonoBehaviour
         {
             textMesh.text = string.Empty; // Clear text when dialogue ends
         }
+    }
+    public void PauseTimeline()
+    {
+
     }
 
 }

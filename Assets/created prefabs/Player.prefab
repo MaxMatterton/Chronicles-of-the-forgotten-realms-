@@ -125,16 +125,14 @@ MonoBehaviour:
   scoretext: {fileID: 0}
   mybody: {fileID: 8437751193820012149}
   anim: {fileID: 4694051493730026063}
-  LevelText: {fileID: 5028565641344568182, guid: 27e142f9151307a4db7759c4747ad99a, type: 3}
-  next: {fileID: 2942794579659789543, guid: 635bd114c1d2a0545be98b9ed3e49e64, type: 3}
-  moveSpeed: 5
+  LevelText: {fileID: 0}
+  next: {fileID: 0}
   JumpPower: 10
   KeyCollected: 0
-  damage: 10
+  chest: {fileID: 0}
   Ha: {fileID: 0}
+  damage: 10
   heavyAttackDamage: 100
-  heavyAttackEnergy: 0
-  heavyAttackMaxEnergy: 10
   coinParticles: {fileID: 6750350852010765266, guid: 40cffe7f0c981fb4bb713a96afe3c531, type: 3}
   attackCooldown1: 0.5
   attackCooldown2: 0
@@ -144,6 +142,10 @@ MonoBehaviour:
   EnemyLayer:
     serializedVersion: 2
     m_Bits: 128
+  playerHealth: 250
+  playerSpeed: 7
+  PlayerAttack: 70
+  playerDefence: 25
 --- !u!50 &8437751193820012149
 Rigidbody2D:
   serializedVersion: 4
@@ -230,5 +232,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Hb: {fileID: 0}
   Ds: {fileID: 0}
-  MaxHealth: 300
-  CurrentHealth: 0

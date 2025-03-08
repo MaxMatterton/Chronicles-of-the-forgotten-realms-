@@ -4,28 +4,72 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class EnemyStats : MonoBehaviour
+public class EnemyStats
 {
     //EnemyHealth
-    public int EnemyMaxHealth;
-    public float EnemyHealth;
+    public int EnemyMaxHealth = 200;
+    public float EnemyHealth = 200;
 
     //Movement
-    public float EnemySpeed;
+    public float EnemySpeed = 3;
 
     //Damage
     public float EnemyAttackPower;
-    public float EnemyDefense;
-    
-    public void TakeDamage(float Damage)
-    {
-        float FinalDamage = (float)Math.Round(Mathf.Max(10*(Damage*Damage)/10*(Damage+EnemyDefense), 0),2);
-        EnemyHealth -= FinalDamage;
-        if (EnemyHealth <= 0) 
-        {
-            EnemyHealth = 0;
-            Debug.Log("Player is dead");
+    public float EnemyDefense = 5;
 
+    //Type
+    public string[] Type;
+    
+    public float CalculateDamage(float damage, float defense)
+    {
+        return Mathf.Max((10 * damage * damage) / (10 * (damage + defense)), 1);
+    }
+    
+    public void EnemyType(int SeletedType,int MaxHealthValue, float SpeedValue,float AttackPowerValue,float DefenseValue){
+
+        Type = new string[] {"Speed", "Heavy", "Tank", "Ranged", "MagicWielder"};
+
+        if (Type[SeletedType] == "Speed")
+        {
+            EnemyMaxHealth = MaxHealthValue;
+            EnemySpeed = SpeedValue;
+            EnemyAttackPower = AttackPowerValue;
+            EnemyDefense = DefenseValue;
+        }
+        else if(Type[SeletedType] == "Heavy") 
+        {
+            EnemyMaxHealth = MaxHealthValue;
+            EnemySpeed = SpeedValue;
+            EnemyAttackPower = AttackPowerValue;
+            EnemyDefense = DefenseValue;
+        } 
+        else if(Type[SeletedType] == "Tank") 
+        {
+            EnemyMaxHealth = MaxHealthValue;
+            EnemySpeed = SpeedValue;
+            EnemyAttackPower = AttackPowerValue;
+            EnemyDefense = DefenseValue;
+        } 
+        else if(Type[SeletedType] == "Ranged")
+        {
+            EnemyMaxHealth = MaxHealthValue;
+            EnemySpeed = SpeedValue;
+            EnemyAttackPower = AttackPowerValue;
+            EnemyDefense = DefenseValue;
+        }
+        else if (Type[SeletedType] == "MagicWielder")
+        {
+            EnemyMaxHealth = MaxHealthValue;
+            EnemySpeed = SpeedValue;
+            EnemyAttackPower = AttackPowerValue;
+            EnemyDefense = DefenseValue;
+        }
+        else
+        {
+            EnemyMaxHealth = MaxHealthValue;
+            EnemySpeed = SpeedValue;
+            EnemyAttackPower = AttackPowerValue;
+            EnemyDefense = DefenseValue;
         }
     }
 
@@ -36,11 +80,5 @@ public class EnemyStats : MonoBehaviour
         {
             EnemyHealth = EnemyMaxHealth;
         }
-    }
-    public void SetStats () {
-        EnemyAttackPower = EnemyAttackPower * 1.1F;
-        EnemySpeed = EnemySpeed * 1.1F;
-        EnemyDefense = EnemyDefense * 1.1F;
-        EnemyHealth = EnemyHealth * 1.1F;
     }
 }

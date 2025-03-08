@@ -5,11 +5,11 @@ using UnityEngine;
 public class EnemyPatrol : MonoBehaviour
 {
     [Header("Patrol Points")]
-    [SerializeField] private Transform leftEdge;
-    [SerializeField] private Transform rightEdge;
+    [SerializeField] Transform leftEdge;
+    [SerializeField] Transform rightEdge;
 
     [Header("Enemy")]
-    [SerializeField] private Transform enemy;
+    [SerializeField] Transform enemy;
 
     [Header("Movement parameters")]
     EnemyStats Em = new EnemyStats();
@@ -17,16 +17,17 @@ public class EnemyPatrol : MonoBehaviour
     public bool movingLeft;
 
     [Header("Idle Behaviour")]
-    [SerializeField] private float idleDuration;
-    private float idleTimer;
+    [SerializeField] float idleDuration;
+    float idleTimer;
 
     [Header("Enemy Animator")]
-    [SerializeField] private Animator anim;
+    [SerializeField] Animator anim;
 
     private void Awake()
     {
         initScale = enemy.localScale;
     }
+
     private void OnDisable()
     {
         anim.SetBool("isrunning", false);
@@ -44,9 +45,13 @@ public class EnemyPatrol : MonoBehaviour
         else
         {
             if (enemy.position.x <= rightEdge.position.x)
+            {
                 MoveInDirection(1);
+            }
             else
+            {
                 DirectionChange();
+            }
         }
     }
 
@@ -57,11 +62,14 @@ public class EnemyPatrol : MonoBehaviour
         idleTimer += Time.deltaTime;
 
         if (idleTimer > idleDuration)
+        {
             movingLeft = !movingLeft;
+        }
     }
 
     private void MoveInDirection(int _direction)
     {
+
         idleTimer = 0;
         anim.SetBool("isrunning", true);
 
@@ -72,7 +80,9 @@ public class EnemyPatrol : MonoBehaviour
         //Move in that direction
         enemy.position = new Vector3(enemy.position.x + Time.deltaTime * _direction * Em.EnemySpeed,
             enemy.position.y, enemy.position.z);
+
     }
+
     public void lookatplayer()
     {
         anim.SetBool("isrunning", false);

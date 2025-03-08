@@ -8,26 +8,26 @@ using Unity.Collections;
 public class enemyattack : MonoBehaviour
 {
     [Header("Attack Parameters")]
-    [SerializeField] private float attackCooldown;
-    [SerializeField] private float range;
-    [SerializeField] private int damage;
+    [SerializeField] float attackCooldown;
+    [SerializeField] float range;
+    [SerializeField] int damage;
 
     [Header("Collider Parameters")]
-    [SerializeField] private float colliderDistance;
-    [SerializeField] private BoxCollider2D boxCollider;
+    [SerializeField] float colliderDistance;
+    [SerializeField] BoxCollider2D boxCollider;
 
     [Header("Back ollider Parameters")]
-    [SerializeField] private float BackcolliderDistance;
-    [SerializeField] private float Backrange;
+    [SerializeField] float BackcolliderDistance;
+    [SerializeField] float Backrange;
 
     [Header("Player Layer")]
-    [SerializeField] private LayerMask playerLayer;
-    private float cooldownTimer = Mathf.Infinity;
+    [SerializeField] LayerMask playerLayer;
+    float cooldownTimer = Mathf.Infinity;
 
     //References
-    private Animator anim;
-    private PlayerHealth Playerhealth;
-    private EnemyPatrol enemyPatrol;
+    Animator anim;
+    PlayerHealth Playerhealth;
+    EnemyPatrol enemyPatrol;
 
     private void Awake()
     {
