@@ -4,15 +4,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class PlayerStats
+public class PlayerStats :ISaveable
 {
     public static PlayerStats instance;
 
     //Classes
-    bool Knight;
-    bool Archer;
-    bool Mage;
-    bool Warrior;
+    readonly bool Knight;
+    readonly bool Archer;
+    readonly bool Mage;
+    readonly bool Warrior;
     
     //Health
     public float MaxHealth ;
@@ -35,6 +35,10 @@ public class PlayerStats
 
     //Upgrading
     public int SkillPoints;
+
+    //Score
+    public int Score;
+    public int HighScore;
 
     private void Awake() {
         instance = this;
@@ -77,8 +81,8 @@ public class PlayerStats
         {
             AttackPower = AttackPower + AttackPowerPoints * 1.1F;
             Speed = Speed + SpeedPoints * 1.1F;
-            Defense = Defense + DefensePoints * 1.1F;
-            MaxHealth = MaxHealth + MaxHealthPoints * 1.1F;
+            Defense = DefensePoints * 1.1F;
+            MaxHealth = MaxHealth + MaxHealthPoints * 1.1F;     
         }
         else if (Warrior)
         {
@@ -163,5 +167,29 @@ public class PlayerStats
         AttackPowerPoints = PlayerPrefs.GetFloat("PlayerAttackPowerPoints");
         DefensePoints = PlayerPrefs.GetFloat("PlayerDefensePoints");
         Debug.Log("Stats Loaded");
+    }
+    public void HighScoreCheck()
+    {
+        if (Score > HighScore)
+        {
+            this.HighScore = Score;
+            Debug.Log("New HoghScore");
+        }
+        else
+        {
+            Debug.Log("So Close!Better Luck Next Time.");
+        }
+    }
+
+    public void Save()
+    {
+        SaveData WorldData = new SaveData(HighScore);
+
+        SaveLoad.instance.SaveInfo(WorldData);
+    }
+
+    public void Load()
+    {
+        throw new NotImplementedException();
     }
 }

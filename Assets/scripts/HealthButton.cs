@@ -34,26 +34,21 @@ public class HealthButton : MonoBehaviour
     {
         if (healthPotionAmount > 0)
         {
-            playermovement.playerstats.Health += 20;
+            playermovement.playerstats.Heal(50);
             healthPotionAmount --; 
             PotionAmount.text = "X" + healthPotionAmount.ToString();
-            
         }
     }
     public void UseEnergyPotion()
     {
         if (energyPotionAmount > 0)
         {
-            if (playermovement.playerstats.Energy == playermovement.playerstats.MaxEnergy)
-        {
-            UnityEngine.Debug.Log("hello");
-        }
-        else{
-            playermovement.playerstats.Energy += 10;
-            energyPotionAmount --;
-            PotionAmount2.text = "X" + energyPotionAmount.ToString();
-        }
-            
+            if (playermovement.playerstats.Energy != playermovement.playerstats.MaxEnergy)
+            {
+                playermovement.playerstats.Energy += 10;
+                energyPotionAmount --;
+                PotionAmount2.text = "X" + energyPotionAmount.ToString();
+            }
         }
         
     }

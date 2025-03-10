@@ -1,12 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Unity.Mathematics;
 using TMPro;
 using Cainos.PixelArtPlatformer_VillageProps;
-using Cainos.LucidEditor;
 
-public class playermovement : MonoBehaviour,ISaveable
+public class playermovement : MonoBehaviour
 {
     
     public TextMeshProUGUI scoretext;
@@ -19,7 +17,7 @@ public class playermovement : MonoBehaviour,ISaveable
     
     float scorecount;
     public bool KeyCollected = false;
-    int HighScore;
+
     
     //Script References 
     EnemyHealth EnemyHealth;
@@ -188,6 +186,7 @@ public class playermovement : MonoBehaviour,ISaveable
         if (other.gameObject.CompareTag("Chest"))
         {
             other.GetComponent<Chest>().IsOpened = KeyCollected;
+            playerstats.Score += 10;
         }
 
         if (other.gameObject.tag == "coins")
@@ -208,6 +207,7 @@ public class playermovement : MonoBehaviour,ISaveable
         if (other.gameObject.CompareTag("waystone"))
         {
             LevelText.SetActive(false);
+            
         }
 
 
@@ -256,15 +256,5 @@ public class playermovement : MonoBehaviour,ISaveable
         
     }
 
-    public void Save()
-    {
-        SaveData WorldData = new SaveData(HighScore);
-
-        SaveLoad.instance.SaveInfo(WorldData);
-    }
-
-    public void Load () {
-        
-        
-    }
+    
 }
