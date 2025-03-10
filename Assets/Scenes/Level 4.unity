@@ -3807,8 +3807,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Hb: {fileID: 1528303110}
   pm: {fileID: 1908272550}
-  MaxHealth: 2000
-  CurrentHealth: 0
   DeadDelay: 0
   damageParticles: {fileID: 7033977630136317332, guid: 01fd2c2b4265d5a40b21f61b20257acb, type: 3}
 --- !u!114 &574424215
@@ -3848,7 +3846,6 @@ MonoBehaviour:
   leftEdge: {fileID: 1869863074}
   rightEdge: {fileID: 1949684215}
   enemy: {fileID: 574424213}
-  speed: 3
   initScale: {x: 0, y: 0, z: 0}
   movingLeft: 0
   idleDuration: 1.5
@@ -6770,11 +6767,11 @@ PrefabInstance:
       objectReference: {fileID: 1616631942}
     - target: {fileID: 8256063767748539411, guid: 68a639a2c8c26714d83b4e94df12e4ab, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.14
+      value: -6.23
       objectReference: {fileID: 0}
     - target: {fileID: 8256063767748539411, guid: 68a639a2c8c26714d83b4e94df12e4ab, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.47
+      value: -0.02
       objectReference: {fileID: 0}
     - target: {fileID: 8256063767748539411, guid: 68a639a2c8c26714d83b4e94df12e4ab, type: 3}
       propertyPath: m_LocalPosition.z
