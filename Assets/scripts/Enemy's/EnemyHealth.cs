@@ -7,7 +7,6 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     public HealthBar Hb;
-    public playermovement pm;
     Animator anim;
     EnemyStats Enemystats = new EnemyStats();
 
@@ -43,12 +42,12 @@ public class EnemyHealth : MonoBehaviour
             {
 
                 if (GetComponent<EnemyPatrol>() != null)
-
                 {
                     anim.SetTrigger("dead");
                     Invoke("DeadEnemy",DeadDelay);
                     Dead = true;
                     GetComponent<EnemyPatrol>().enabled = false;
+                    playermovement.playerstats.Score += 50;
                 }
                 
             }
@@ -57,14 +56,7 @@ public class EnemyHealth : MonoBehaviour
     }
     public void DeadEnemy()
     {
-        if (this.gameObject.CompareTag("Boss1"))
-        {
-            pm.KeyCollected = true;
-            Destroy(this.gameObject);
-        }
-        else{
-            Destroy(this.gameObject);
-        }
+        Destroy(this.gameObject);
     }
 
     public void DamageParticles(Vector2 AttackDirection)

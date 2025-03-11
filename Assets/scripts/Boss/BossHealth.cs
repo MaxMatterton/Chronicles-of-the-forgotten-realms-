@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BossHealth : MonoBehaviour
@@ -16,43 +17,48 @@ public class BossHealth : MonoBehaviour
     [SerializeField] private ParticleSystem damageParticles;
     private ParticleSystem damageParticlesInstance;
 
-    private RangedBossAttack bossAttack;
-    private EnemyPatrol enemyPatrol;
     private Collider2D bossCollider;
 
     void Start()
     {
         anim = GetComponent<Animator>();
-        bossAttack = GetComponent<RangedBossAttack>();
-        enemyPatrol = GetComponent<EnemyPatrol>();
+        
         bossCollider = GetComponent<Collider2D>();
 
         CurrentHealth = MaxHealth;
         Hb.setmaxHealth(MaxHealth);
     }
 
+    private void FixedUpdate()
+    {
+        Hb.sethealth(CurrentHealth);    
+    }
+
     public void TakeDamage(float damage, Vector2 AttackDirection)
     {
         CurrentHealth -= damage;
-        Hb.sethealth(CurrentHealth); // Update health bar after setting health
-
+        
         if (CurrentHealth > 0)
         {
             DamageParticles(AttackDirection);
-            Hb.sethealth(CurrentHealth);
         }
-        else
+        else if (!Dead)
         {
-            if (!Dead)
+            if (GetComponent<BossAttack>() != null)
             {
-                Dead = true;
                 anim.SetTrigger("dead");
-
-                // Disable attack & movement
-                if (bossAttack != null) bossAttack.enabled = false;
-                if (enemyPatrol != null) enemyPatrol.enabled = false;
-
-                Invoke("DeadEnemy", DeathDelay);
+                Dead = true;
+                Invoke("DeadEnemy",DeathDelay);
+                GetComponent<RangedBossAttack>().enabled = false;
+                GetComponent<EnemyPatrol>().enabled = false;
+            }
+            else if(GetComponent<RangedBossAttack>() != null)
+            {
+                anim.SetTrigger("dead");
+                Dead = true;
+                Invoke("DeadEnemy",DeathDelay);
+                GetComponent<RangedBossAttack>().enabled = false;
+                GetComponent<EnemyPatrol>().enabled = false;
             }
         }
     }
@@ -63,7 +69,6 @@ public class BossHealth : MonoBehaviour
         {
             pm.KeyCollected = true;
         }
-
         Destroy(gameObject);
     }
 
