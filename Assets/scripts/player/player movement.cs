@@ -5,6 +5,7 @@ using Unity.Mathematics;
 using TMPro;
 using Cainos.PixelArtPlatformer_VillageProps;
 using Cainos.LucidEditor;
+using System;
 
 public class playermovement : MonoBehaviour,ISaveable
 {
@@ -34,6 +35,14 @@ public class playermovement : MonoBehaviour,ISaveable
     //Health
     public float damage;
     bool Dead;
+
+    //Audio
+    AudioSource audioSource;
+    public AudioClip AttackAudio;
+    public float num1;
+    public float num2;
+    Unity.Mathematics.Random random;
+
     
     //Heavy Attack
     public float heavyAttackDamage;
@@ -71,9 +80,17 @@ public class playermovement : MonoBehaviour,ISaveable
     
 
     private void Awake() {
+
         // Initialize the player stats script
         playerstats = new PlayerStats();
         playerstats.SetPoints(PlayerAttack,playerDefence,playerSpeed,playerHealth);
+        audioSource = this.GetComponent<AudioSource>();
+        if (audioSource != null )
+        {
+            Debug.Log("Audio Connected");
+
+        }
+            
     }
     
     void Update()
@@ -116,6 +133,7 @@ public class playermovement : MonoBehaviour,ISaveable
                     damageEnemy(damage);
                     playerstats.Energy += 1;
                     Ha.setEnergy(playerstats.Energy);
+                    SoundSystem();
                 }
             }
             else if (cooldownTimer1 >= attackCooldown1)
@@ -123,6 +141,7 @@ public class playermovement : MonoBehaviour,ISaveable
                 cooldownTimer1 = 0;
                 anim.SetTrigger("attack");
             }
+                    
         }
         else if (Input.GetKeyDown(KeyCode.Mouse1) && playerstats.Energy >= playerstats.MaxEnergy)
         {
@@ -135,6 +154,7 @@ public class playermovement : MonoBehaviour,ISaveable
                     damageEnemy(heavyAttackDamage);
                     playerstats.Energy = 0;
                     Ha.setEnergy(playerstats.Energy);
+                    
                 }
 
             }
@@ -151,12 +171,17 @@ public class playermovement : MonoBehaviour,ISaveable
 
 
     }
+
     private void jump()
     {
         mybody.velocity = new Vector2(mybody.velocity.x, JumpPower);
         grounded = false;
     }
-
+    private void SoundSystem()
+    {
+        audioSource.pitch = random.NextFloat(num1, num2);
+        audioSource.PlayOneShot(AttackAudio);
+    }
     void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("ground "))
