@@ -7,7 +7,8 @@ using UnityEngine.Playables;
 public class CutSceneText : MonoBehaviour
 {
     public TextMeshProUGUI textMesh;
-    public string[] textLines;
+    public string[] PlayerLines;
+    public string[] EnemyLines;
     public float textSpeed = 0.05f;
 
     private int index;
@@ -16,18 +17,21 @@ public class CutSceneText : MonoBehaviour
     {
         textMesh.text = string.Empty;
     }
-
-    // 🟢 This function will be triggered by the Signal Receiver
-    public void StartDialogue()
+    void Update()
     {
-        index = 0;
-        textMesh.text = string.Empty; // Reset text
-        StartCoroutine(TypeLine());
     }
 
-    IEnumerator TypeLine()
+    // 🟢 This function will be triggered by the Signal Receiver
+    // public void StartDialogue()
+    // {
+    //     index = 0;
+    //     textMesh.text = string.Empty; // Reset text
+    //     StartCoroutine(());
+    // }
+
+    IEnumerator TypePlayerLines()
     {
-        foreach (char letter in textLines[index].ToCharArray())
+        foreach (char letter in PlayerLines[index].ToCharArray())
         {
 
             textMesh.text += letter;
@@ -36,14 +40,27 @@ public class CutSceneText : MonoBehaviour
         }
     }
 
-    public void NextLine()
+    public void PlayerSpeaking()
     {
-        
-        if (index < textLines.Length - 1)
+        if (index < PlayerLines.Length - 1)
         {
             index++;
             textMesh.text = string.Empty;
-            StartCoroutine(TypeLine());
+            StartCoroutine(TypePlayerLines());
+        }
+        else
+        {
+            textMesh.text = string.Empty; // Clear text when dialogue ends
+        }
+    }
+
+    public void NextLineNPC()
+    {
+        if (index < EnemyLines.Length - 1)
+        {
+            index++;
+            textMesh.text = string.Empty;
+            StartCoroutine(TypePlayerLines());
         }
         else
         {

@@ -8,6 +8,7 @@ public class MovingController : MonoBehaviour
     public float moveSpeed = 2f; // Speed of the movement
     private Vector3 startPosition;
     private bool movingUp = true;
+    private bool Vertical;
 
     void Start()
     {
@@ -21,21 +22,44 @@ public class MovingController : MonoBehaviour
 
     void MovePlatform()
     {
-        if (movingUp)
+        if (Vertical)
         {
-            transform.position += Vector3.up * moveSpeed * Time.deltaTime;
-            if (transform.position.y >= startPosition.y + moveDistance)
+                if (movingUp)
             {
-                movingUp = false; // Change direction
+                transform.position += Vector3.up * moveSpeed * Time.deltaTime;
+                if (transform.position.y >= startPosition.y + moveDistance)
+                {
+                    movingUp = false; // Change direction
+                }
+            }
+            else
+            {
+                transform.position -= Vector3.up * moveSpeed * Time.deltaTime;
+                if (transform.position.y <= startPosition.y)
+                {
+                    movingUp = true; // Change direction
+                }
             }
         }
         else
         {
-            transform.position -= Vector3.up * moveSpeed * Time.deltaTime;
-            if (transform.position.y <= startPosition.y)
+            if (movingUp)
             {
-                movingUp = true; // Change direction
+                transform.position += Vector3.right * moveSpeed * Time.deltaTime;
+                if (transform.position.x >= startPosition.x + moveDistance)
+                {
+                    movingUp = false; // Change direction
+                }
+            }
+            else
+            {
+                transform.position -= Vector3.right * moveSpeed * Time.deltaTime;
+                if (transform.position.x <= startPosition.x)
+                {
+                    movingUp = true; // Change direction
+                }
             }
         }
+        
     }
 }

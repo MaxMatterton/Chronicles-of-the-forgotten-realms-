@@ -1212,8 +1212,6 @@ MonoBehaviour:
   EnergyPotion: {fileID: 2659063744402685495}
   PotionAmount2: {fileID: 6091506386661381021}
   energyPotionAmount: 6
-  ph: {fileID: 0}
-  pm: {fileID: 0}
 --- !u!1 &6047768658434613776
 GameObject:
   m_ObjectHideFlags: 0
