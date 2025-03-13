@@ -24,7 +24,7 @@ public class MovingController : MonoBehaviour
     {
         if (Vertical)
         {
-                if (movingUp)
+            if (movingUp)
             {
                 transform.position += Vector3.up * moveSpeed * Time.deltaTime;
                 if (transform.position.y >= startPosition.y + moveDistance)

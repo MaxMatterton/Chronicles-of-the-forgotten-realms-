@@ -7335,7 +7335,7 @@ ParticleSystem:
         m_RotationOrder: 4
     minKillSpeed: 0
     maxKillSpeed: 10000
-    radiusScale: 0.1
+    radiusScale: 0.01
     collidesWith:
       serializedVersion: 2
       m_Bits: 512
@@ -14755,6 +14755,38 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1949671548288727693, guid: bcc7e5b880ea54b44aca633ebd8b0b82, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1949671548288727693, guid: bcc7e5b880ea54b44aca633ebd8b0b82, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1949671548288727693, guid: bcc7e5b880ea54b44aca633ebd8b0b82, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1949671548288727693, guid: bcc7e5b880ea54b44aca633ebd8b0b82, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1949671548288727693, guid: bcc7e5b880ea54b44aca633ebd8b0b82, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 242.278
+      objectReference: {fileID: 0}
+    - target: {fileID: 1949671548288727693, guid: bcc7e5b880ea54b44aca633ebd8b0b82, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 232.3183
+      objectReference: {fileID: 0}
+    - target: {fileID: 1949671548288727693, guid: bcc7e5b880ea54b44aca633ebd8b0b82, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -140
+      objectReference: {fileID: 0}
+    - target: {fileID: 1949671548288727693, guid: bcc7e5b880ea54b44aca633ebd8b0b82, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 134
+      objectReference: {fileID: 0}
     - target: {fileID: 3947622452657321330, guid: bcc7e5b880ea54b44aca633ebd8b0b82, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -20567,7 +20599,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 1
-  m_AdditionalShaderChannelsFlag: 25
+  m_AdditionalShaderChannelsFlag: -1
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
