@@ -60,5 +60,9 @@ public class PlayerHealth : MonoBehaviour
             TakeDamage(playermovement.playerstats.MaxHealth);
         }
     }
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        
+    }
         
 }
