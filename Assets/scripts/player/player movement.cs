@@ -38,7 +38,7 @@ public class playermovement : MonoBehaviour,ISaveable
 
     //Audio
     AudioSource audioSource;
-    public AudioClip AttackAudio;
+    public AudioClip DeathAudio;
     public float num1;
     public float num2;
     Unity.Mathematics.Random random;
@@ -134,7 +134,7 @@ public class playermovement : MonoBehaviour,ISaveable
                     damageEnemy(damage);
                     playerstats.Energy += 1;
                     Ha.setEnergy(playerstats.Energy);
-                    SoundSystem();
+                    
                 }
             }
             else if (cooldownTimer1 >= attackCooldown1)
@@ -178,11 +178,7 @@ public class playermovement : MonoBehaviour,ISaveable
         mybody.velocity = new Vector2(mybody.velocity.x, JumpPower);
         grounded = false;
     }
-    private void SoundSystem()
-    {
-        audioSource.pitch = random.NextFloat(num1, num2);
-        audioSource.PlayOneShot(AttackAudio);
-    }
+    
     void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("ground "))
