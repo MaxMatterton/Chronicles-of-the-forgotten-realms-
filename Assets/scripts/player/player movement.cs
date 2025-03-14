@@ -196,6 +196,16 @@ public class playermovement : MonoBehaviour,ISaveable
                 Destroy(other.gameObject);
             }
         }
+        if (other.gameObject.CompareTag("Trap"))
+        {
+            PlayerHealth.TakeDamage(50,false);
+
+            // Determine the direction based on player's facing
+            float knockbackDirection = transform.localScale.x > 0 ? -1 : 1;
+
+            // Apply knockback force
+            mybody.AddForce(new Vector2(knockbackDirection * 10, 10), ForceMode2D.Impulse);
+        }
 
     }
 
@@ -223,16 +233,7 @@ public class playermovement : MonoBehaviour,ISaveable
             scoretext.text = "coins:" + scorecount.ToString();
             CoinParticles(other);
         }
-        if (other.gameObject.CompareTag("Trap"))
-        {
-            PlayerHealth.TakeDamage(50);
-
-            // Determine the direction based on player's facing
-            float knockbackDirection = transform.localScale.x > 0 ? -1 : 1;
-
-            // Apply knockback force
-            mybody.AddForce(new Vector2(knockbackDirection * 10, 10), ForceMode2D.Impulse);
-        }
+        
         
     }
 

@@ -94,7 +94,7 @@ public class enemyattack : MonoBehaviour
     private void DamagePlayer()
     {
         if (PlayerInSight())
-            Playerhealth.TakeDamage(damage);
+            Playerhealth.TakeDamage(damage,true);
     }
     
     

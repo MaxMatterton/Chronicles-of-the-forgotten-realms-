@@ -59,7 +59,7 @@ public class Projectile : MonoBehaviour
             PlayerHealth playerHealth = collision.transform.GetComponent<PlayerHealth>();
             if (playerHealth != null)
             {
-                playerHealth.TakeDamage(damage);
+                playerHealth.TakeDamage(damage,true);
             }
 
         }

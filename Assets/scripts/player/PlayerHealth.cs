@@ -23,14 +23,20 @@ public class PlayerHealth : MonoBehaviour
         Hb.sethealth(playermovement.playerstats.Health);
     }
 
-    public void TakeDamage(float Damage)
+    public void TakeDamage(float Damage,bool EnemyAttack)
     {
-        float FinalDamage = playermovement.playerstats.CalculateDamage(Damage,playermovement.playerstats.Defense);
+        float FinalDamage;
+        if (EnemyAttack == true)
+        {
+            FinalDamage = playermovement.playerstats.CalculateDamage(Damage,playermovement.playerstats.Defense);
+        }
+        else
+        {
+            FinalDamage = Damage;
+        }
+
         playermovement.playerstats.Health -= FinalDamage;
         Hb.sethealth(playermovement.playerstats.Health);
-
-        Debug.Log(playermovement.playerstats.Health);
-        Debug.Log(playermovement.playerstats.Defense);
 
         if (playermovement.playerstats.Health > 0)
         {
@@ -57,12 +63,8 @@ public class PlayerHealth : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Death"))
         {
-            TakeDamage(playermovement.playerstats.MaxHealth);
+            TakeDamage(playermovement.playerstats.MaxHealth,false);
         }
-    }
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        
     }
         
 }

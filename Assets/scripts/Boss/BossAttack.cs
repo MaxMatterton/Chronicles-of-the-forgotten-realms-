@@ -120,8 +120,8 @@ public class BossAttack : MonoBehaviour
     private void DamagePlayer()
     {
         if (PlayerInSightAttack1())
-            Health.TakeDamage(damage);
+            Health.TakeDamage(damage,true);
         else if (PlayerInSightAttack2())
-            Health.TakeDamage(damage2);
+            Health.TakeDamage(damage2,true);
     }
 }
