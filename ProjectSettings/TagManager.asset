@@ -13,11 +13,12 @@ TagManager:
   - Chest
   - ground
   - switchBG
+  - Trap
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Traps
   - Water
   - UI
   - Player

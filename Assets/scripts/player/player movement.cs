@@ -26,8 +26,8 @@ public class playermovement : MonoBehaviour,ISaveable
     EnemyHealth EnemyHealth;
     BossHealth bossHealth;
     public static PlayerStats playerstats;
-    public Chest chest;
     public HeavyAttack Ha;
+    PlayerHealth PlayerHealth;
 
     //ground check
     bool grounded;
@@ -85,6 +85,7 @@ public class playermovement : MonoBehaviour,ISaveable
         playerstats = new PlayerStats();
         playerstats.SetPoints(PlayerAttack,playerDefence,playerSpeed,playerHealth);
         audioSource = this.GetComponent<AudioSource>();
+        PlayerHealth = GetComponent<PlayerHealth>();
         if (audioSource != null )
         {
             Debug.Log("Audio Connected");
@@ -214,7 +215,6 @@ public class playermovement : MonoBehaviour,ISaveable
         {
             other.GetComponent<Chest>().IsOpened = KeyCollected;
         }
-
         if (other.gameObject.tag == "coins")
         {
             Destroy(other.gameObject);
@@ -222,6 +222,16 @@ public class playermovement : MonoBehaviour,ISaveable
             Debug.Log(scorecount);
             scoretext.text = "coins:" + scorecount.ToString();
             CoinParticles(other);
+        }
+        if (other.gameObject.CompareTag("Trap"))
+        {
+            PlayerHealth.TakeDamage(50);
+
+            // Determine the direction based on player's facing
+            float knockbackDirection = transform.localScale.x > 0 ? -1 : 1;
+
+            // Apply knockback force
+            mybody.AddForce(new Vector2(knockbackDirection * 10, 10), ForceMode2D.Impulse);
         }
         
     }
@@ -234,8 +244,7 @@ public class playermovement : MonoBehaviour,ISaveable
         {
             LevelText.SetActive(false);
         }
-
-
+        
     }
     bool PlayerRange()
     {
