@@ -209,8 +209,6 @@ public class playermovement : MonoBehaviour,ISaveable
 
     void OnTriggerEnter2D(Collider2D other)
     {
-
-
         if (other.gameObject.CompareTag("waystone"))
         {
             LevelText.SetActive(true);
@@ -240,8 +238,8 @@ public class playermovement : MonoBehaviour,ISaveable
             }
             else if (CaveBG.activeInHierarchy)
             {
-                NormalBG.SetActive(false);
-                CaveBG.SetActive(true);
+                NormalBG.SetActive(true);
+                CaveBG.SetActive(false);
             }
         }
         
