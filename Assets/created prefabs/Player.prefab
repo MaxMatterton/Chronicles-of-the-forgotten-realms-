@@ -34,7 +34,8 @@ Transform:
   m_LocalPosition: {x: -9.71, y: -2.03, z: 0}
   m_LocalScale: {x: 5.1, y: 5.1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 7761662243305348332}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2745754674536737192
@@ -129,11 +130,19 @@ MonoBehaviour:
   next: {fileID: 0}
   JumpPower: 10
   KeyCollected: 0
-  chest: {fileID: 0}
   Ha: {fileID: 0}
   damage: 10
+  DeathAudio: {fileID: 0}
+  num1: 0
+  num2: 0
   heavyAttackDamage: 100
   coinParticles: {fileID: 6750350852010765266, guid: 40cffe7f0c981fb4bb713a96afe3c531, type: 3}
+  grounded: 0
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  groundCheckRadius: 0.1
+  groundCheck: {fileID: 8725821629513053731}
   attackCooldown1: 0.5
   attackCooldown2: 0
   range: 1.77
@@ -146,6 +155,8 @@ MonoBehaviour:
   playerSpeed: 7
   PlayerAttack: 70
   playerDefence: 25
+  NormalBG: {fileID: 0}
+  CaveBG: {fileID: 0}
 --- !u!50 &8437751193820012149
 Rigidbody2D:
   serializedVersion: 4
@@ -232,3 +243,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Hb: {fileID: 0}
   Ds: {fileID: 0}
+--- !u!1 &8725821629513053731
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7761662243305348332}
+  m_Layer: 6
+  m_Name: GroundCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7761662243305348332
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8725821629513053731}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.1879, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 441068401862958070}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -29,9 +29,6 @@ public class playermovement : MonoBehaviour,ISaveable
     public HeavyAttack Ha;
     PlayerHealth PlayerHealth;
 
-    //ground check
-    bool grounded;
-
     //Health
     public float damage;
     bool Dead;
@@ -43,14 +40,20 @@ public class playermovement : MonoBehaviour,ISaveable
     public float num2;
     Unity.Mathematics.Random random;
 
-    
     //Heavy Attack
     public float heavyAttackDamage;
-    
 
     //particle system
     [SerializeField] ParticleSystem coinParticles;
     ParticleSystem coinParticlesInstance;
+
+    
+    [Header("Ground Check")]
+    
+    [SerializeField] bool grounded;
+    [SerializeField] LayerMask groundLayer;
+    [SerializeField] float groundCheckRadius;
+    [SerializeField] GameObject groundCheck;
 
     [Header("Attack Parameters")]
 
@@ -86,12 +89,14 @@ public class playermovement : MonoBehaviour,ISaveable
         // Initialize the player stats script
         playerstats = new PlayerStats();
         playerstats.SetPoints(PlayerAttack,playerDefence,playerSpeed,playerHealth);
+
+        // Initialize the audio source
         audioSource = this.GetComponent<AudioSource>();
+        
         PlayerHealth = GetComponent<PlayerHealth>();
         if (audioSource != null )
         {
             Debug.Log("Audio Connected");
-
         }
             
     }
@@ -119,6 +124,8 @@ public class playermovement : MonoBehaviour,ISaveable
         }
 
         //Jump
+
+        GroundCheck();
         if (Input.GetKey(KeyCode.Space) && grounded == true)
         {
             jump();
@@ -175,18 +182,26 @@ public class playermovement : MonoBehaviour,ISaveable
 
     }
 
+    void GroundCheck()
+    {
+        // Raycast downward to check for ground
+        grounded = Physics2D.Raycast(groundCheck.transform.position, Vector2.down, groundCheckRadius, groundLayer);
+        
+        // Optional Debugging
+        Debug.DrawRay(groundCheck.transform.position, Vector2.down * groundCheckRadius, Color.red);
+    }
+
     private void jump()
     {
         mybody.velocity = new Vector2(mybody.velocity.x, JumpPower);
-        grounded = false;
     }
     
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("ground "))
-        {
-            grounded = true;
-        }
+        // if (other.gameObject.CompareTag("ground "))
+        // {
+        //     grounded = true;
+        // }
         if (other.gameObject.CompareTag("Stage2"))
         {
             if (KeyCollected == true)
