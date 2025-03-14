@@ -234,14 +234,15 @@ public class playermovement : MonoBehaviour,ISaveable
         if (other.gameObject.CompareTag("switchBG"))
         {
             if (NormalBG.activeInHierarchy)
-        {
-            NormalBG.SetActive(false);
-            CaveBG.SetActive(true);
-        }
-        else{
-            NormalBG.SetActive(false);
-            CaveBG.SetActive(true);
-        }
+            {
+                NormalBG.SetActive(false);
+                CaveBG.SetActive(true);
+            }
+            else if (CaveBG.activeInHierarchy)
+            {
+                NormalBG.SetActive(false);
+                CaveBG.SetActive(true);
+            }
         }
         
     }
