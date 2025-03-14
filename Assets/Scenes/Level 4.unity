@@ -11554,6 +11554,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerGui
       objectReference: {fileID: 0}
+    - target: {fileID: 8017631295075084322, guid: bcc7e5b880ea54b44aca633ebd8b0b82, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 394150611}
+    - target: {fileID: 8017631295075084322, guid: bcc7e5b880ea54b44aca633ebd8b0b82, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -12490,6 +12498,11 @@ PrefabInstance:
 --- !u!224 &394150610 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2369976159104236897, guid: f5744a1af744cff4baa138f919a5504e, type: 3}
+  m_PrefabInstance: {fileID: 394150609}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &394150611 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3990673103311341971, guid: f5744a1af744cff4baa138f919a5504e, type: 3}
   m_PrefabInstance: {fileID: 394150609}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &395153260
