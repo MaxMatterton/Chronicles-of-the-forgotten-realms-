@@ -77,7 +77,9 @@ public class playermovement : MonoBehaviour,ISaveable
     [SerializeField] float PlayerAttack;
     [SerializeField] float playerDefence;
     
-    
+    [Header("BG Switch")]
+    [SerializeField] GameObject NormalBG;
+    [SerializeField] GameObject CaveBG;
 
     private void Awake() {
 
@@ -229,7 +231,18 @@ public class playermovement : MonoBehaviour,ISaveable
             scoretext.text = "coins:" + scorecount.ToString();
             CoinParticles(other);
         }
-        
+        if (other.gameObject.CompareTag("switchBG"))
+        {
+            if (NormalBG.activeInHierarchy)
+        {
+            NormalBG.SetActive(false);
+            CaveBG.SetActive(true);
+        }
+        else{
+            NormalBG.SetActive(false);
+            CaveBG.SetActive(true);
+        }
+        }
         
     }
 
