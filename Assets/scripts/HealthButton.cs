@@ -35,7 +35,7 @@ public class HealthButton : MonoBehaviour
         if (healthPotionAmount > 0)
         {
             playermovement.playerstats.Heal(50);
-            healthPotionAmount --; 
+            healthPotionAmount--; 
             PotionAmount.text = "X" + healthPotionAmount.ToString();
         }
     }

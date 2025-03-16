@@ -141,7 +141,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 512
-  groundCheckRadius: 0.1
+  groundCheckRadius: 0.3
   groundCheck: {fileID: 8725821629513053731}
   attackCooldown1: 0.5
   attackCooldown2: 0
