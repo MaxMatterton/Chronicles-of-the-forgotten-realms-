@@ -25,4 +25,13 @@ public class SceneScript : MonoBehaviour
     public void MainMenu () {
         SceneManager.LoadScene(0);
     }
+
+    public void LevelsMenu()
+    {
+        SceneManager.LoadScene(6);
+    }
+
+    public void LevelSelect(int Level) {
+        SceneManager.LoadScene(Level);
+    }
 }
