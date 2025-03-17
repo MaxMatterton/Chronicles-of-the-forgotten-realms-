@@ -34,4 +34,10 @@ public class SceneScript : MonoBehaviour
     public void LevelSelect(int Level) {
         SceneManager.LoadScene(Level);
     }
+
+    public void OnApplicationQuit()
+    {
+        Application.Quit();
+
+    }
 }
