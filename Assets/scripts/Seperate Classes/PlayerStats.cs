@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class PlayerStats :ISaveable
+public class PlayerStats 
 {
     public static PlayerStats instance;
 
@@ -179,17 +179,5 @@ public class PlayerStats :ISaveable
         {
             Debug.Log("So Close!Better Luck Next Time.");
         }
-    }
-
-    public void Save()
-    {
-        SaveData WorldData = new SaveData(HighScore);
-
-        SaveLoad.instance.SaveInfo(WorldData);
-    }
-
-    public void Load()
-    {
-        throw new NotImplementedException();
     }
 }

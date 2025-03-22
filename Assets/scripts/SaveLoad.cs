@@ -8,8 +8,8 @@ using UnityEngine;
 public class SaveLoad : MonoBehaviour
 {
     public static SaveLoad instance;
-    public string saveFile; 
-    
+    public string saveFile;
+        
     private void Awake() {
 
         instance = this;
@@ -64,10 +64,12 @@ public class SaveLoad : MonoBehaviour
 [System.Serializable]
 public class SaveData
 {
+    public int Level;
     public int HighScore;
 
-    public SaveData(int highScore)
+    public SaveData(int Level,int highScore)
     {
+        this.Level = Level;
         this.HighScore = highScore;
     }
 }
