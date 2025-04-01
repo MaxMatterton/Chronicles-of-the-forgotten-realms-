@@ -100,10 +100,10 @@ public class PlayerStats :ISaveable
         }
         else
         {
-            AttackPower = (AttackPower + AttackPowerPoints) * 1.1F;
-            Speed = (Speed + SpeedPoints) * 1.1F;
-            Defense = (Defense + DefensePoints) * 1.1F;
-            MaxHealth = (MaxHealth + MaxHealthPoints) * 1.1F;
+            AttackPower = AttackPower + (AttackPowerPoints * 1.1F);
+            Speed = Speed + (SpeedPoints * 1.1F);
+            Defense = Defense + (DefensePoints * 1.1F);
+            MaxHealth = MaxHealth + (MaxHealthPoints * 1.1F);
             Health = MaxHealth;
             Debug.Log(this.AttackPower);
             Debug.Log(this.Health);
