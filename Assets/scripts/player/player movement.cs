@@ -6,21 +6,25 @@ using TMPro;
 using Cainos.PixelArtPlatformer_VillageProps;
 using Cainos.LucidEditor;
 using System;
+using UnityEngine.SceneManagement;
 
 public class playermovement : MonoBehaviour,ISaveable
 {
     
-    public TextMeshProUGUI scoretext;
+    public TextMeshProUGUI Cointext;
     public Rigidbody2D mybody;
     public Animator anim;
     public GameObject LevelText;
     public GameObject next;
+    public TextMeshProUGUI ScoreText;
+    public TextMeshProUGUI HighScoreText;
 
     [SerializeField] float JumpPower;
     
     float scorecount;
     public bool KeyCollected = false;
     int HighScore;
+    int CurrentLevel;
     
     //Script References 
     EnemyHealth EnemyHealth;
@@ -99,6 +103,8 @@ public class playermovement : MonoBehaviour,ISaveable
             Debug.Log("Audio Connected");
         }
             
+        CurrentLevel = SceneManager.GetActiveScene().buildIndex;
+        playerstats.Score = 0;
     }
     
     void Update()
@@ -231,6 +237,9 @@ public class playermovement : MonoBehaviour,ISaveable
         if (other.gameObject.CompareTag("Finish"))
         {
             next.SetActive(true);
+            playerstats.HighScoreCheck();
+            ScoreText.text = playerstats.Score.ToString();
+            HighScoreText.text = playerstats.HighScore.ToString();
         }
         if (other.gameObject.CompareTag("Chest"))
         {
@@ -241,7 +250,7 @@ public class playermovement : MonoBehaviour,ISaveable
             Destroy(other.gameObject);
             scorecount++;
             Debug.Log(scorecount);
-            scoretext.text = "coins:" + scorecount.ToString();
+            Cointext.text = "coins:" + scorecount.ToString();
             CoinParticles(other);
         }
         if (other.gameObject.CompareTag("switchBG"))
@@ -316,7 +325,7 @@ public class playermovement : MonoBehaviour,ISaveable
 
     public void Save()
     {
-        SaveData WorldData = new SaveData(HighScore);
+        SaveData WorldData = new SaveData(CurrentLevel,HighScore);
 
         SaveLoad.instance.SaveInfo(WorldData);
     }

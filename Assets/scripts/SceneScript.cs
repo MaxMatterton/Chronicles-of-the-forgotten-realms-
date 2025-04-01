@@ -40,4 +40,5 @@ public class SceneScript : MonoBehaviour
         Application.Quit();
 
     }
+    
 }

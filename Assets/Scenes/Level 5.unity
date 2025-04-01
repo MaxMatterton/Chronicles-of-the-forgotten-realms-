@@ -6347,6 +6347,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &288943344 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 844784775754938275, guid: 635bd114c1d2a0545be98b9ed3e49e64, type: 3}
+  m_PrefabInstance: {fileID: 387466891}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &290629831
 GameObject:
   m_ObjectHideFlags: 0
@@ -83075,9 +83086,17 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5785656023530182903, guid: 76e49e93625203d4a9394b1ef7157223, type: 3}
+      propertyPath: Cointext
+      value: 
+      objectReference: {fileID: 599398499}
+    - target: {fileID: 5785656023530182903, guid: 76e49e93625203d4a9394b1ef7157223, type: 3}
       propertyPath: LevelText
       value: 
       objectReference: {fileID: 29465091}
+    - target: {fileID: 5785656023530182903, guid: 76e49e93625203d4a9394b1ef7157223, type: 3}
+      propertyPath: ScoreText
+      value: 
+      objectReference: {fileID: 288943344}
     - target: {fileID: 5785656023530182903, guid: 76e49e93625203d4a9394b1ef7157223, type: 3}
       propertyPath: scoretext
       value: 
@@ -83086,6 +83105,10 @@ PrefabInstance:
       propertyPath: AttackAudio
       value: 
       objectReference: {fileID: 8300000, guid: 7da54357259fe3f4ba16ecf7b45eee9c, type: 3}
+    - target: {fileID: 5785656023530182903, guid: 76e49e93625203d4a9394b1ef7157223, type: 3}
+      propertyPath: HighScoreText
+      value: 
+      objectReference: {fileID: 1811828080}
     - target: {fileID: 5785656023530182903, guid: 76e49e93625203d4a9394b1ef7157223, type: 3}
       propertyPath: EnemyLayer.m_Bits
       value: 384
@@ -90386,6 +90409,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1811828080 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1209687402453589358, guid: 635bd114c1d2a0545be98b9ed3e49e64, type: 3}
+  m_PrefabInstance: {fileID: 387466891}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1813277494
 GameObject:
   m_ObjectHideFlags: 0
