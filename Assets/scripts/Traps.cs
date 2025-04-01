@@ -25,11 +25,18 @@ public class Traps : MonoBehaviour
     public float maxDistance; // Distance before destroying arrow
     public float ArrowWaitTime;
 
+    [Header("Spike Ball Properties")]// Spike Ball Properties
+    public Vector2 pointA;  // First point
+    public Vector2 pointB;  // Second point
+    public float speed = 2f;
+    
+
 
     void Awake()
     {
         MyBody = GetComponent<Rigidbody2D>();
         InitialPosition = transform.position;
+        
     }
 
     void Update()
@@ -48,6 +55,11 @@ public class Traps : MonoBehaviour
                 LaunchProjectile(Vector2.down);
             }
         }
+
+        // Spike Ball trap
+        float t = Mathf.PingPong(Time.time * speed, 1);
+        transform.position = Vector2.Lerp(pointA, pointB, t); // Moves smoothly between points
+
     }
 
     private IEnumerator SpearTrap()
