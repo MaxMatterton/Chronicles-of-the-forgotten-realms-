@@ -26,8 +26,9 @@ public class Traps : MonoBehaviour
     public float ArrowWaitTime;
 
     [Header("Spike Ball Properties")]// Spike Ball Properties
-    public Vector2 pointA;  // First point
-    public Vector2 pointB;  // Second point
+    public bool SpikeBall;
+    public Transform pointA;  // First point
+    public Transform pointB;  // Second point
     public float speed = 2f;
     
 
@@ -47,7 +48,7 @@ public class Traps : MonoBehaviour
         {
             StartCoroutine(SpearTrap());
         }
-        if (Arrow)
+        else if (Arrow)
         {
             if (Timer >= ArrowWaitTime)
             {
@@ -55,11 +56,19 @@ public class Traps : MonoBehaviour
                 LaunchProjectile(Vector2.down);
             }
         }
+        else if (SpikeBall)
+        {
+            SpikeBallMovement();
+        }
 
+        
+
+    }
+    public void SpikeBallMovement()
+    {
         // Spike Ball trap
         float t = Mathf.PingPong(Time.time * speed, 1);
-        transform.position = Vector2.Lerp(pointA, pointB, t); // Moves smoothly between points
-
+        transform.position = Vector2.Lerp(pointA.position, pointB.position, t); // Moves smoothly between points
     }
 
     private IEnumerator SpearTrap()
