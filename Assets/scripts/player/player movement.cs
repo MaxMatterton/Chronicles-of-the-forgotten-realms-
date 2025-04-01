@@ -24,7 +24,8 @@ public class playermovement : MonoBehaviour,ISaveable
     float scorecount;
     public bool KeyCollected = false;
     int HighScore;
-    int CurrentLevel;
+    int CurrentLevel; 
+    List<LevelHighScore> scores = new List<LevelHighScore>();
     
     //Script References 
     EnemyHealth EnemyHealth;
@@ -106,6 +107,18 @@ public class playermovement : MonoBehaviour,ISaveable
         CurrentLevel = SceneManager.GetActiveScene().buildIndex;
         playerstats.Score = 0;
     }
+
+    public void MoveLeft () {
+
+        mybody.velocity = new Vector2(playerstats.Speed, mybody.velocity.y);
+        transform.localScale = new Vector3(5.1f, 5.1f, 5.1f);
+        
+    }
+    public void MoveRight () {
+        mybody.velocity = new Vector2(playerstats.Speed * -1, mybody.velocity.y);
+        transform.localScale = new Vector3(-5.1f, 5.1f, 5.1f);
+        anim.SetBool("isrunning ", true);
+    }
     
     void Update()
     {
@@ -114,29 +127,9 @@ public class playermovement : MonoBehaviour,ISaveable
 
         cooldownTimer1 += Time.deltaTime;
         cooldownTimer2 += Time.deltaTime;
-
-        mybody.velocity = new Vector2(Input.GetAxis("Horizontal") * playerstats.Speed, mybody.velocity.y);
-
-        float Horizontalinput = Input.GetAxis("Horizontal");
-
-        //Flip
-        if (Horizontalinput > 0.01f)
-        {
-            transform.localScale = new Vector3(5.1f, 5.1f, 5.1f);
-        }
-        else if (Horizontalinput < -0.01f)
-        {
-            transform.localScale = new Vector3(-5.1f, 5.1f, 5.1f);
-        }
-
         //Jump
 
         GroundCheck();
-        if (Input.GetKey(KeyCode.Space) && grounded == true)
-        {
-            jump();
-        }
-
         //Attacking
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
@@ -183,7 +176,7 @@ public class playermovement : MonoBehaviour,ISaveable
         }
 
         anim.SetBool("isgrouned ", grounded);
-        anim.SetBool("isrunning ", Horizontalinput != 0);
+        
 
 
     }
@@ -197,9 +190,13 @@ public class playermovement : MonoBehaviour,ISaveable
         Debug.DrawRay(groundCheck.transform.position, Vector2.down * groundCheckRadius, Color.red);
     }
 
-    private void jump()
+    public void jump()
     {
-        mybody.velocity = new Vector2(mybody.velocity.x, JumpPower);
+        if (grounded == true)
+        {
+            mybody.velocity = new Vector2(mybody.velocity.x, JumpPower);
+        }
+        
     }
     
     void OnCollisionEnter2D(Collision2D other)
@@ -223,7 +220,7 @@ public class playermovement : MonoBehaviour,ISaveable
             float knockbackDirection = transform.localScale.x > 0 ? -1 : 1;
 
             // Apply knockback force
-            mybody.AddForce(new Vector2(knockbackDirection * 10, 10), ForceMode2D.Impulse);
+            mybody.AddForce(new Vector2(knockbackDirection * 20, 20), ForceMode2D.Impulse);
         }
 
     }
@@ -234,17 +231,30 @@ public class playermovement : MonoBehaviour,ISaveable
         {
             LevelText.SetActive(true);
         }
+
         if (other.gameObject.CompareTag("Finish"))
         {
             next.SetActive(true);
             playerstats.HighScoreCheck();
             ScoreText.text = playerstats.Score.ToString();
             HighScoreText.text = playerstats.HighScore.ToString();
+            int index = scores.FindIndex(x => x.LevelNumber == CurrentLevel);
+
+            if (index != -1)
+            {
+                scores[index] = new LevelHighScore { LevelNumber = CurrentLevel, HighScore = playerstats.HighScore };
+            }
+            else
+            {
+                scores.Add(new LevelHighScore { LevelNumber = CurrentLevel, HighScore = playerstats.HighScore });
+            }
         }
+
         if (other.gameObject.CompareTag("Chest"))
         {
             other.GetComponent<Chest>().IsOpened = KeyCollected;
         }
+
         if (other.gameObject.tag == "coins")
         {
             Destroy(other.gameObject);
@@ -253,6 +263,7 @@ public class playermovement : MonoBehaviour,ISaveable
             Cointext.text = "coins:" + scorecount.ToString();
             CoinParticles(other);
         }
+
         if (other.gameObject.CompareTag("switchBG"))
         {
             if (NormalBG.activeInHierarchy)
@@ -271,7 +282,6 @@ public class playermovement : MonoBehaviour,ISaveable
 
     void OnTriggerExit2D(Collider2D other)
     {
-
 
         if (other.gameObject.CompareTag("waystone"))
         {
@@ -325,7 +335,8 @@ public class playermovement : MonoBehaviour,ISaveable
 
     public void Save()
     {
-        SaveData WorldData = new SaveData(CurrentLevel,HighScore);
+        
+        SaveData WorldData = new SaveData(scores);
 
         SaveLoad.instance.SaveInfo(WorldData);
     }

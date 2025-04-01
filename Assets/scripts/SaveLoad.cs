@@ -26,7 +26,22 @@ public class SaveLoad : MonoBehaviour
         File.WriteAllText(saveFile, savedata);
         Debug.Log(savedata);    
     }
-    //public void LoadInfo()
+    public SaveData LoadInfo()
+    {
+        if (File.Exists(saveFile))
+        {
+            string json = File.ReadAllText(saveFile); 
+            SaveData loadedData = JsonUtility.FromJson<SaveData>(json);
+
+            Debug.Log("Loaded Data:" + json);
+            return loadedData;
+        }
+        else
+        {
+            Debug.LogWarning("No save file found!");
+            return new SaveData(new List<LevelHighScore>());
+        }
+    }
 
 
 #if UNITY_EDITOR
@@ -62,15 +77,19 @@ public class SaveLoad : MonoBehaviour
 }
 
 [System.Serializable]
+public struct LevelHighScore{
+    public int LevelNumber;
+    public int HighScore;
+}
+
+[System.Serializable]
 public class SaveData
 {
-    public int Level;
-    public int HighScore;
+    public List<LevelHighScore> HighScores;
 
-    public SaveData(int Level,int highScore)
+    public SaveData(List<LevelHighScore> levelHighScores)
     {
-        this.Level = Level;
-        this.HighScore = highScore;
+        this.HighScores = levelHighScores;
     }
 }
 
