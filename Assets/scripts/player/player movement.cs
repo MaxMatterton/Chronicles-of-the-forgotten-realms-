@@ -7,6 +7,7 @@ using Cainos.PixelArtPlatformer_VillageProps;
 using Cainos.LucidEditor;
 using System;
 using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 public class playermovement : MonoBehaviour,ISaveable
 {
@@ -46,7 +47,7 @@ public class playermovement : MonoBehaviour,ISaveable
     public AudioClip heavyattackAudio;
     public float num1;
     public float num2;
-    Unity.Mathematics.Random random;
+    
 
     //Heavy Attack
     [Header("Heavy Attack")]
@@ -141,17 +142,15 @@ public class playermovement : MonoBehaviour,ISaveable
                     damageEnemy(damage);
                     playerstats.Energy += 1;
                     Ha.setEnergy(playerstats.Energy);
-                    
+                    PlayWithRandomPitch(lightattackAudio);
                 }
             }
             else if (cooldownTimer1 >= attackCooldown1)
             {
                 cooldownTimer1 = 0;
                 anim.SetTrigger("attack");
+                PlayWithRandomPitch(lightattackAudio);
             }
-            float pitchno = random.NextFloat(num1,num2);
-            audioSource.pitch = pitchno;
-            audioSource.PlayOneShot(lightattackAudio);
     }
     public void HeavyAttack () {
         if (playerstats.Energy >= playerstats.MaxEnergy)
@@ -165,7 +164,7 @@ public class playermovement : MonoBehaviour,ISaveable
                     damageEnemy(heavyAttackDamage);
                     playerstats.Energy = 0;
                     Ha.setEnergy(playerstats.Energy);
-                    
+                    PlayWithRandomPitch(heavyattackAudio);
                 }
 
             }
@@ -173,13 +172,19 @@ public class playermovement : MonoBehaviour,ISaveable
             {
                 cooldownTimer2 = 0;
                 anim.SetTrigger("attack2");
+                PlayWithRandomPitch(heavyattackAudio);
             }
 
-            float pitchno = random.NextFloat(num1, num2);
-            audioSource.pitch = pitchno;
-            audioSource.PlayOneShot(heavyattackAudio);
-
         }
+    }
+    public void PlayWithRandomPitch( AudioClip clip)
+    {
+        float randomPitch = Random.Range(num1, num2);
+        audioSource.pitch = randomPitch;
+
+        audioSource.PlayOneShot(clip);
+    
+        
     }
 
     public void Move(float move, bool jump)
@@ -275,12 +280,13 @@ public class playermovement : MonoBehaviour,ISaveable
 
         if (other.gameObject.tag == "coins")
         {
+            audioSource.pitch = 1;
+            audioSource.PlayOneShot(coinAudio);
             Destroy(other.gameObject);
             scorecount++;
             Debug.Log(scorecount);
             Cointext.text = "coins:" + scorecount.ToString();
             CoinParticles(other);
-            audioSource.PlayOneShot(coinAudio);
         }
 
         if (other.gameObject.CompareTag("switchBG"))
