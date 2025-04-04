@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8014470521472984666}
   - component: {fileID: 7463274743116500970}
   m_Layer: 0
-  m_Name: spritesheet_0
+  m_Name: Coins
   m_TagString: coins
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

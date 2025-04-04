@@ -10,7 +10,6 @@ using UnityEngine.SceneManagement;
 
 public class playermovement : MonoBehaviour,ISaveable
 {
-    
     public TextMeshProUGUI Cointext;
     public Rigidbody2D mybody;
     public Animator anim;
@@ -19,14 +18,14 @@ public class playermovement : MonoBehaviour,ISaveable
     public TextMeshProUGUI ScoreText;
     public TextMeshProUGUI HighScoreText;
 
-    [SerializeField] float JumpPower;
-    
+    [Header("Score")]
     float scorecount;
     public bool KeyCollected = false;
     int HighScore;
     int CurrentLevel; 
     
-    //Script References 
+    //Script References
+    [Header("Scripts")] 
     List<LevelHighScore> scores = new List<LevelHighScore>();
     EnemyHealth EnemyHealth;
     BossHealth bossHealth;
@@ -35,10 +34,12 @@ public class playermovement : MonoBehaviour,ISaveable
     PlayerHealth PlayerHealth;
 
     //Health
+    [Header("Health")]
     public float damage;
     bool Dead;
 
     //Audio
+    [Header("Audio")]
     AudioSource audioSource;
     public AudioClip DeathAudio;
     public float num1;
@@ -46,11 +47,17 @@ public class playermovement : MonoBehaviour,ISaveable
     Unity.Mathematics.Random random;
 
     //Heavy Attack
+    [Header("Heavy Attack")]
     public float heavyAttackDamage;
 
     //particle system
+    [Header("Particle System")]
     [SerializeField] ParticleSystem coinParticles;
     ParticleSystem coinParticlesInstance;
+
+    //Chests
+    [Space]
+    bool FreeChest = true;
 
     
     [Header("Ground Check")]
@@ -84,6 +91,7 @@ public class playermovement : MonoBehaviour,ISaveable
     [SerializeField] float playerSpeed;
     [SerializeField] float PlayerAttack;
     [SerializeField] float playerDefence;
+    [SerializeField] float JumpPower;
     
     [Header("BG Switch")]
     [SerializeField] GameObject NormalBG;
@@ -246,9 +254,14 @@ public class playermovement : MonoBehaviour,ISaveable
             }
         }
 
-        if (other.gameObject.CompareTag("Chest"))
+        if (other.gameObject.CompareTag("BossChest"))
         {
             other.GetComponent<Chest>().IsOpened = KeyCollected;
+        }
+
+        if (other.gameObject.CompareTag("Chest"))
+        {
+            other.GetComponent<Chest>().IsOpened = FreeChest;
         }
 
         if (other.gameObject.tag == "coins")
