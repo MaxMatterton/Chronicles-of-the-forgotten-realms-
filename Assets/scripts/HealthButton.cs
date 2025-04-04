@@ -16,6 +16,7 @@ public class HealthButton : MonoBehaviour
     public TextMeshProUGUI PotionAmount2;
     public int energyPotionAmount; 
     
+    
     void Start()
     {
         PotionAmount.text = "X" + healthPotionAmount.ToString();

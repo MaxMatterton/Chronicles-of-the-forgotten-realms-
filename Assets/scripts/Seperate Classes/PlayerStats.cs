@@ -72,38 +72,38 @@ public class PlayerStats
 
         if (Knight)
         {
-            AttackPower = AttackPower + AttackPowerPoints * 1.1F;
-            Speed = Speed + SpeedPoints * 1.1F;
-            Defense = Defense + DefensePoints * 1.1F;
-            MaxHealth = MaxHealth + MaxHealthPoints * 1.1F;
+            AttackPower = AttackPower + AttackPowerPoints * 5F;
+            Speed = Speed + SpeedPoints * 1;
+            Defense = Defense + DefensePoints * 4F;
+            MaxHealth = MaxHealth + MaxHealthPoints * 200F;
         }
         else if (Mage)
         {
-            AttackPower = AttackPower + AttackPowerPoints * 1.1F;
-            Speed = Speed + SpeedPoints * 1.1F;
-            Defense = DefensePoints * 1.1F;
-            MaxHealth = MaxHealth + MaxHealthPoints * 1.1F;     
+            AttackPower = AttackPower + AttackPowerPoints * 7F;
+            Speed = Speed + SpeedPoints * .5F;
+            Defense = DefensePoints * 1.34F;
+            MaxHealth = MaxHealth + MaxHealthPoints * 120F;     
         }
         else if (Warrior)
         {
-            AttackPower = AttackPower + AttackPowerPoints * 1.1F;
-            Speed = Speed + SpeedPoints * 1.1F;
-            Defense = Defense + DefensePoints * 1.1F;
-            MaxHealth = MaxHealth + MaxHealthPoints * 1.1F;
+            AttackPower = AttackPower + AttackPowerPoints * 4F;
+            Speed = Speed + SpeedPoints * 0.3F;
+            Defense = Defense + DefensePoints * 6F;
+            MaxHealth = MaxHealth + MaxHealthPoints * 250F;
         }
         else if (Archer)
         {
-            AttackPower = AttackPower + AttackPowerPoints * 1.1F;
-            Speed = Speed + SpeedPoints * 1.1F;
-            Defense = Defense + DefensePoints * 1.1F;
-            MaxHealth = MaxHealth + MaxHealthPoints * 1.1F;
+            AttackPower = AttackPower + AttackPowerPoints * 6F;
+            Speed = Speed + SpeedPoints * 1.2F;
+            Defense = Defense + DefensePoints * 1.2F;
+            MaxHealth = MaxHealth + MaxHealthPoints * 100F;
         }
         else
         {
-            AttackPower = AttackPower + (AttackPowerPoints * 1.1F);
-            Speed = Speed + (SpeedPoints * 1.1F);
-            Defense = Defense + (DefensePoints * 1.1F);
-            MaxHealth = MaxHealth + (MaxHealthPoints * 1.1F);
+            AttackPower = AttackPower + (AttackPowerPoints * 2F);
+            Speed = Speed + (SpeedPoints * 0.6F);
+            Defense = Defense + (DefensePoints * 3F);
+            MaxHealth = MaxHealth + (MaxHealthPoints * 150F);
             Health = MaxHealth;
             Debug.Log(this.AttackPower);
             Debug.Log(this.Health);

@@ -25,9 +25,9 @@ public class playermovement : MonoBehaviour,ISaveable
     public bool KeyCollected = false;
     int HighScore;
     int CurrentLevel; 
-    List<LevelHighScore> scores = new List<LevelHighScore>();
     
     //Script References 
+    List<LevelHighScore> scores = new List<LevelHighScore>();
     EnemyHealth EnemyHealth;
     BossHealth bossHealth;
     public static PlayerStats playerstats;
@@ -39,10 +39,8 @@ public class playermovement : MonoBehaviour,ISaveable
     bool Dead;
 
     //Audio
-    public AudioSource audioSource;
-    public AudioClip coinAudio;
-    public AudioClip lightattackAudio;
-    public AudioClip heavyattackAudio;
+    AudioSource audioSource;
+    public AudioClip DeathAudio;
     public float num1;
     public float num2;
     Unity.Mathematics.Random random;
@@ -109,18 +107,6 @@ public class playermovement : MonoBehaviour,ISaveable
         CurrentLevel = SceneManager.GetActiveScene().buildIndex;
         playerstats.Score = 0;
     }
-
-    public void MoveLeft () {
-
-        mybody.velocity = new Vector2(playerstats.Speed * -1, mybody.velocity.y);
-        transform.localScale = new Vector3(-5.1f, 5.1f, 5.1f);
-        
-    }
-    public void MoveRight () {
-        mybody.velocity = new Vector2(playerstats.Speed, mybody.velocity.y);
-        transform.localScale = new Vector3(5.1f, 5.1f, 5.1f);
-        anim.SetBool("isrunning ", true);
-    }
     
     void Update()
     {
@@ -152,10 +138,6 @@ public class playermovement : MonoBehaviour,ISaveable
                 cooldownTimer1 = 0;
                 anim.SetTrigger("attack");
             }
-
-            audioSource.PlayOneShot(lightattackAudio);
-            float pitchno = random.NextFloat(num1,num2);
-            audioSource.pitch =pitchno;
                     
         }
         else if (Input.GetKeyDown(KeyCode.Mouse1) && playerstats.Energy >= playerstats.MaxEnergy)
@@ -179,16 +161,32 @@ public class playermovement : MonoBehaviour,ISaveable
                 anim.SetTrigger("attack2");
             }
 
-            audioSource.PlayOneShot(heavyattackAudio);
-            float pitchno = random.NextFloat(num1, num2);
-            audioSource.pitch = pitchno;
-
         }
 
         anim.SetBool("isgrouned ", grounded);
+    }
+
+    public void Move(float move, bool jump)
+    {
+        if (grounded || true) // Assumes air control is allowed
+        {
+            Vector2 targetVelocity = new Vector2(move * playerstats.Speed, mybody.velocity.y);
+            mybody.velocity = targetVelocity;
+
+            if (move > 0)
+            {
+                transform.localScale = new Vector3(5.1f, 5.1f, 5.1f);
+            }
+            else if (move < 0)
+            {
+                transform.localScale = new Vector3(-5.1f, 5.1f, 5.1f);
+            }
+        }
+        if (grounded == true && jump == true)
+        {
+            mybody.velocity = new Vector2(mybody.velocity.x, JumpPower);
+        }
         
-
-
     }
 
     void GroundCheck()
@@ -199,22 +197,10 @@ public class playermovement : MonoBehaviour,ISaveable
         // Optional Debugging
         Debug.DrawRay(groundCheck.transform.position, Vector2.down * groundCheckRadius, Color.red);
     }
-
-    public void jump()
-    {
-        if (grounded == true)
-        {
-            mybody.velocity = new Vector2(mybody.velocity.x, JumpPower);
-        }
-        
-    }
     
     void OnCollisionEnter2D(Collision2D other)
     {
-        // if (other.gameObject.CompareTag("ground "))
-        // {
-        //     grounded = true;
-        // }
+        
         if (other.gameObject.CompareTag("Stage2"))
         {
             if (KeyCollected == true)
@@ -272,7 +258,6 @@ public class playermovement : MonoBehaviour,ISaveable
             Debug.Log(scorecount);
             Cointext.text = "coins:" + scorecount.ToString();
             CoinParticles(other);
-            audioSource.PlayOneShot(coinAudio);
         }
 
         if (other.gameObject.CompareTag("switchBG"))
