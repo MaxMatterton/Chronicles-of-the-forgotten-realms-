@@ -39,8 +39,10 @@ public class playermovement : MonoBehaviour,ISaveable
     bool Dead;
 
     //Audio
-    AudioSource audioSource;
-    public AudioClip DeathAudio;
+    public AudioSource audioSource;
+    public AudioClip coinAudio;
+    public AudioClip lightattackAudio;
+    public AudioClip heavyattackAudio;
     public float num1;
     public float num2;
     Unity.Mathematics.Random random;
@@ -110,13 +112,13 @@ public class playermovement : MonoBehaviour,ISaveable
 
     public void MoveLeft () {
 
-        mybody.velocity = new Vector2(playerstats.Speed, mybody.velocity.y);
-        transform.localScale = new Vector3(5.1f, 5.1f, 5.1f);
+        mybody.velocity = new Vector2(playerstats.Speed * -1, mybody.velocity.y);
+        transform.localScale = new Vector3(-5.1f, 5.1f, 5.1f);
         
     }
     public void MoveRight () {
-        mybody.velocity = new Vector2(playerstats.Speed * -1, mybody.velocity.y);
-        transform.localScale = new Vector3(-5.1f, 5.1f, 5.1f);
+        mybody.velocity = new Vector2(playerstats.Speed, mybody.velocity.y);
+        transform.localScale = new Vector3(5.1f, 5.1f, 5.1f);
         anim.SetBool("isrunning ", true);
     }
     
@@ -150,6 +152,10 @@ public class playermovement : MonoBehaviour,ISaveable
                 cooldownTimer1 = 0;
                 anim.SetTrigger("attack");
             }
+
+            audioSource.PlayOneShot(lightattackAudio);
+            float pitchno = random.NextFloat(num1,num2);
+            audioSource.pitch =pitchno;
                     
         }
         else if (Input.GetKeyDown(KeyCode.Mouse1) && playerstats.Energy >= playerstats.MaxEnergy)
@@ -172,6 +178,10 @@ public class playermovement : MonoBehaviour,ISaveable
                 cooldownTimer2 = 0;
                 anim.SetTrigger("attack2");
             }
+
+            audioSource.PlayOneShot(heavyattackAudio);
+            float pitchno = random.NextFloat(num1, num2);
+            audioSource.pitch = pitchno;
 
         }
 
@@ -262,6 +272,7 @@ public class playermovement : MonoBehaviour,ISaveable
             Debug.Log(scorecount);
             Cointext.text = "coins:" + scorecount.ToString();
             CoinParticles(other);
+            audioSource.PlayOneShot(coinAudio);
         }
 
         if (other.gameObject.CompareTag("switchBG"))
