@@ -129,9 +129,13 @@ public class playermovement : MonoBehaviour,ISaveable
 
         GroundCheck();
         //Attacking
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            if (PlayerRange())
+        
+        
+
+        anim.SetBool("isgrouned ", grounded);
+    }
+    public void BasicAttack () {
+        if (PlayerRange())
             {
                 if (cooldownTimer1 >= attackCooldown1)
                 {
@@ -151,9 +155,9 @@ public class playermovement : MonoBehaviour,ISaveable
             float pitchno = random.NextFloat(num1,num2);
             audioSource.pitch = pitchno;
             audioSource.PlayOneShot(lightattackAudio);
-                    
-        }
-        else if (Input.GetKeyDown(KeyCode.Mouse1) && playerstats.Energy >= playerstats.MaxEnergy)
+    }
+    public void HeavyAttack () {
+        if (playerstats.Energy >= playerstats.MaxEnergy)
         {
             if (PlayerRange())
             {
@@ -179,8 +183,6 @@ public class playermovement : MonoBehaviour,ISaveable
             audioSource.PlayOneShot(heavyattackAudio);
 
         }
-
-        anim.SetBool("isgrouned ", grounded);
     }
 
     public void Move(float move, bool jump)
