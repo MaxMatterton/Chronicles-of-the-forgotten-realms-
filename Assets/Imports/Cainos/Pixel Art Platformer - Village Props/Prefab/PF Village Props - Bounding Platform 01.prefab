@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8666753539894232769}
   - component: {fileID: 7554995957317380861}
   - component: {fileID: 4653512453823183222}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -215,7 +215,7 @@ GameObject:
   - component: {fileID: 5373330553216305745}
   - component: {fileID: 2491116113269401538}
   - component: {fileID: 4079092231987273743}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PF Village Props - Bounding Platform 01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -311,7 +311,7 @@ GameObject:
   - component: {fileID: 9117968518781567293}
   - component: {fileID: 6975113845678299868}
   - component: {fileID: 7657256558514739492}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Base
   m_TagString: 'ground '
   m_Icon: {fileID: 0}

@@ -126,51 +126,6 @@ public class playermovement : MonoBehaviour,ISaveable
         //Jump
 
         GroundCheck();
-        //Attacking
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            if (PlayerRange())
-            {
-                if (cooldownTimer1 >= attackCooldown1)
-                {
-                    cooldownTimer1 = 0;
-                    anim.SetTrigger("attack");
-                    damageEnemy(damage);
-                    playerstats.Energy += 1;
-                    Ha.setEnergy(playerstats.Energy);
-                    
-                }
-            }
-            else if (cooldownTimer1 >= attackCooldown1)
-            {
-                cooldownTimer1 = 0;
-                anim.SetTrigger("attack");
-            }
-                    
-        }
-        else if (Input.GetKeyDown(KeyCode.Mouse1) && playerstats.Energy >= playerstats.MaxEnergy)
-        {
-            if (PlayerRange())
-            {
-                if (cooldownTimer2 >= attackCooldown2)
-                {
-                    cooldownTimer2 = 0;
-                    anim.SetTrigger("attack2");
-                    damageEnemy(heavyAttackDamage);
-                    playerstats.Energy = 0;
-                    Ha.setEnergy(playerstats.Energy);
-                    
-                }
-
-            }
-            else if (cooldownTimer2 >= attackCooldown2)
-            {
-                cooldownTimer2 = 0;
-                anim.SetTrigger("attack2");
-            }
-
-        }
-
         anim.SetBool("isgrouned ", grounded);
     }
 
@@ -195,6 +150,49 @@ public class playermovement : MonoBehaviour,ISaveable
             mybody.velocity = new Vector2(mybody.velocity.x, JumpPower);
         }
         
+    }
+    public void BasicAttack()
+    {
+        if (PlayerRange())
+            {
+                if (cooldownTimer1 >= attackCooldown1)
+                {
+                    cooldownTimer1 = 0;
+                    anim.SetTrigger("attack");
+                    damageEnemy(damage);
+                    playerstats.Energy += 1;
+                    Ha.setEnergy(playerstats.Energy);
+                    
+                }
+            }
+            else if (cooldownTimer1 >= attackCooldown1)
+            {
+                cooldownTimer1 = 0;
+                anim.SetTrigger("attack");
+            }
+    }
+    public void HeavyAttack () {
+        if (playerstats.Energy >= playerstats.MaxEnergy)
+        {
+            if (PlayerRange())
+            {
+                if (cooldownTimer2 >= attackCooldown2)
+                {
+                    cooldownTimer2 = 0;
+                    anim.SetTrigger("attack2");
+                    damageEnemy(heavyAttackDamage);
+                    playerstats.Energy = 0;
+                    Ha.setEnergy(playerstats.Energy);
+                    
+                }
+
+            }
+            else if (cooldownTimer2 >= attackCooldown2)
+            {
+                cooldownTimer2 = 0;
+                anim.SetTrigger("attack2");
+            }
+        }
     }
 
     void GroundCheck()
