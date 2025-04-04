@@ -41,7 +41,7 @@ public class playermovement : MonoBehaviour,ISaveable
 
     //Audio
     [Header("Audio")]
-    AudioSource audioSource;
+    public AudioSource audioSource;
     public AudioClip coinAudio;
     public AudioClip lightattackAudio;
     public AudioClip heavyattackAudio;
