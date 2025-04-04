@@ -29,7 +29,7 @@ public class Traps : MonoBehaviour
     public bool SpikeBall;
     public Transform pointA;  // First point
     public Transform pointB;  // Second point
-    public float speed = 2f;
+    public float speed = 1.5f;
     
 
 
