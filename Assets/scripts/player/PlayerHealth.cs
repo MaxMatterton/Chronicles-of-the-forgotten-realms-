@@ -8,6 +8,7 @@ public class PlayerHealth : MonoBehaviour
     public HealthBar Hb;
     public GameObject Ds;
     Animator anim;
+    AudioSource AudioSource;
     public AudioClip DeathAudio;
 
     bool Dead;

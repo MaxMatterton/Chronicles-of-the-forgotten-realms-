@@ -41,7 +41,9 @@ public class playermovement : MonoBehaviour,ISaveable
     //Audio
     [Header("Audio")]
     AudioSource audioSource;
-    public AudioClip DeathAudio;
+    public AudioClip coinAudio;
+    public AudioClip lightattackAudio;
+    public AudioClip heavyattackAudio;
     public float num1;
     public float num2;
     Unity.Mathematics.Random random;
@@ -146,6 +148,9 @@ public class playermovement : MonoBehaviour,ISaveable
                 cooldownTimer1 = 0;
                 anim.SetTrigger("attack");
             }
+            float pitchno = random.NextFloat(num1,num2);
+            audioSource.pitch = pitchno;
+            audioSource.PlayOneShot(lightattackAudio);
                     
         }
         else if (Input.GetKeyDown(KeyCode.Mouse1) && playerstats.Energy >= playerstats.MaxEnergy)
@@ -168,6 +173,10 @@ public class playermovement : MonoBehaviour,ISaveable
                 cooldownTimer2 = 0;
                 anim.SetTrigger("attack2");
             }
+
+            float pitchno = random.NextFloat(num1, num2);
+            audioSource.pitch = pitchno;
+            audioSource.PlayOneShot(heavyattackAudio);
 
         }
 
@@ -271,6 +280,7 @@ public class playermovement : MonoBehaviour,ISaveable
             Debug.Log(scorecount);
             Cointext.text = "coins:" + scorecount.ToString();
             CoinParticles(other);
+            audioSource.PlayOneShot(coinAudio);
         }
 
         if (other.gameObject.CompareTag("switchBG"))
