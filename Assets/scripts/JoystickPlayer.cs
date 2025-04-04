@@ -14,10 +14,12 @@ public class JoystickPlayer : MonoBehaviour
     [Range(1, 10)]
     public float jumpvelocity;
     public float Sensitivity;
+    Animator anim;
     // Start is called before the first frame update
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -32,7 +34,7 @@ public class JoystickPlayer : MonoBehaviour
             jump = true;
             //GetComponent<Rigidbody2D>().velocity = Vector2.up * jumpvelocity;   
         }
-        
+        //anim.SetBool("isrunning")
     }
     private void FixedUpdate()
     { 

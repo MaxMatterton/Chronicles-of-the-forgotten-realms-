@@ -49,12 +49,12 @@ public class PlayerHealth : MonoBehaviour
             if (!Dead)
             {
 
-                if (GetComponent<playermovement>() != null)
+                if (GetComponent<JoystickPlayer>() != null)
 
                 {
                     anim.SetTrigger("dead");
                     Ds.SetActive(true);
-                    GetComponent<playermovement>().enabled = false;
+                    GetComponent<JoystickPlayer>().enabled = false;
                     Dead = true;
                 }
             }
