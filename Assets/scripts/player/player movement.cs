@@ -129,9 +129,6 @@ public class playermovement : MonoBehaviour,ISaveable
 
         GroundCheck();
         //Attacking
-        
-        
-
         anim.SetBool("isgrouned ", grounded);
     }
     public void BasicAttack () {
@@ -205,7 +202,7 @@ public class playermovement : MonoBehaviour,ISaveable
         {
             mybody.velocity = new Vector2(mybody.velocity.x, JumpPower);
         }
-        
+        anim.SetBool("isrunning ",move != 0);
     }
 
     void GroundCheck()
@@ -273,6 +270,7 @@ public class playermovement : MonoBehaviour,ISaveable
         if (other.gameObject.CompareTag("Chest"))
         {
             other.GetComponent<Chest>().IsOpened = FreeChest;
+            playerstats.Score += 100;
         }
 
         if (other.gameObject.tag == "coins")
