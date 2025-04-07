@@ -14,6 +14,7 @@ TagManager:
   - ground
   - switchBG
   - Trap
+  - Coin
   layers:
   - Default
   - TransparentFX

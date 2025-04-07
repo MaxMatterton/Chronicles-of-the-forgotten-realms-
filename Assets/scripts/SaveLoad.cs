@@ -41,6 +41,7 @@ public class SaveLoad : MonoBehaviour
             Debug.LogWarning("No save file found!");
             return new SaveData(new List<LevelHighScore>());
         }
+        
     }
 
 
@@ -96,5 +97,4 @@ public class SaveData
 public interface ISaveable
 {
     public void Save();
-    public void Load();
 }

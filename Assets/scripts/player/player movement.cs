@@ -98,15 +98,12 @@ public class playermovement : MonoBehaviour,ISaveable
     [Header("BG Switch")]
     [SerializeField] GameObject NormalBG;
     [SerializeField] GameObject CaveBG;
-
-    private void Awake() {
+    
+        private void Awake() {
 
         // Initialize the player stats script
         playerstats = new PlayerStats();
         playerstats.SetPoints(PlayerAttack,playerDefence,playerSpeed,playerHealth);
-
-        // Initialize the audio source
-        audioSource = this.GetComponent<AudioSource>();
         
         PlayerHealth = GetComponent<PlayerHealth>();
         if (audioSource != null )
@@ -182,8 +179,11 @@ public class playermovement : MonoBehaviour,ISaveable
         audioSource.pitch = randomPitch;
 
         audioSource.PlayOneShot(clip);
-    
-        
+        Invoke("ResetPitch",1);
+    }
+    public void ResetPitch()
+    {
+        audioSource.pitch = 1;
     }
 
     public void Move(float move, bool jump)
@@ -280,9 +280,8 @@ public class playermovement : MonoBehaviour,ISaveable
             playerstats.Score += 100;
         }
 
-        if (other.gameObject.CompareTag("Coin"))
+        if (other.gameObject.CompareTag("coins"))
         {
-            audioSource.pitch = 1;
             audioSource.PlayOneShot(coinAudio);
             Destroy(other.gameObject);
             scorecount++;
@@ -367,8 +366,5 @@ public class playermovement : MonoBehaviour,ISaveable
         SaveLoad.instance.SaveInfo(WorldData);
     }
 
-    public void Load () {
-        
-        
-    }
+    
 }
