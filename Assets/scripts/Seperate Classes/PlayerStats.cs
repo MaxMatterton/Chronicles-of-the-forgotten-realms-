@@ -67,6 +67,15 @@ public class PlayerStats
     {
         return Mathf.Max((10 * damage * damage) / (10 * (damage + defense)), 1);
     }
+    public float CalculateBasicAttackDamage(float AttackPower,float multiplier,float Debuff)
+    {
+        return Mathf.Max(((AttackPower * 10) * multiplier) / Debuff , 1);
+    }
+    public float CalculateHeavyAttackDamage(float AttackPower,float multiplier,float Debuff)
+    {
+        return Mathf.Max(((AttackPower * 22) * multiplier) / Debuff , 1);
+    }
+
 
     public void SetStats () {
 

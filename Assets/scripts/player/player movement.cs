@@ -36,7 +36,6 @@ public class playermovement : MonoBehaviour,ISaveable
 
     //Health
     [Header("Health")]
-    public float damage;
     bool Dead;
 
     //Audio
@@ -139,7 +138,7 @@ public class playermovement : MonoBehaviour,ISaveable
                 {
                     cooldownTimer1 = 0;
                     anim.SetTrigger("attack");
-                    damageEnemy(damage);
+                    damageEnemy(playerstats.CalculateBasicAttackDamage(playerstats.AttackPower,1,1));
                     playerstats.Energy += 1;
                     Ha.setEnergy(playerstats.Energy);
                     PlayWithRandomPitch(lightattackAudio);
@@ -161,7 +160,7 @@ public class playermovement : MonoBehaviour,ISaveable
                 {
                     cooldownTimer2 = 0;
                     anim.SetTrigger("attack2");
-                    damageEnemy(heavyAttackDamage);
+                    damageEnemy(playerstats.CalculateHeavyAttackDamage(playerstats.AttackPower,1,1));
                     playerstats.Energy = 0;
                     Ha.setEnergy(playerstats.Energy);
                     PlayWithRandomPitch(heavyattackAudio);
@@ -239,10 +238,13 @@ public class playermovement : MonoBehaviour,ISaveable
             // Apply knockback force
             mybody.AddForce(new Vector2(knockbackDirection * 20, 20), ForceMode2D.Impulse);
         }
+        
 
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+   
+
+    private void OnTriggerEnter2D(Collider2D other) 
     {
         if (other.gameObject.CompareTag("waystone"))
         {
@@ -278,7 +280,7 @@ public class playermovement : MonoBehaviour,ISaveable
             playerstats.Score += 100;
         }
 
-        if (other.gameObject.tag == "coins")
+        if (other.gameObject.CompareTag("Coin"))
         {
             audioSource.pitch = 1;
             audioSource.PlayOneShot(coinAudio);
@@ -302,7 +304,6 @@ public class playermovement : MonoBehaviour,ISaveable
                 CaveBG.SetActive(false);
             }
         }
-        
     }
 
     void OnTriggerExit2D(Collider2D other)

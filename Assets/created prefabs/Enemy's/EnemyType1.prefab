@@ -480,9 +480,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Hb: {fileID: 8745151785981953661}
-  pm: {fileID: 0}
-  MaxHealth: 100
-  CurrentHealth: 0
   DeadDelay: 1.2
   damageParticles: {fileID: 7033977630136317332, guid: 01fd2c2b4265d5a40b21f61b20257acb, type: 3}
 --- !u!114 &9006016844882200977
@@ -499,7 +496,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackCooldown: 0
   range: 1.55
-  damage: 10
+  damage: 30
   colliderDistance: 0.18
   boxCollider: {fileID: 1149939530557852520}
   BackcolliderDistance: -0.25
@@ -594,7 +591,6 @@ MonoBehaviour:
   leftEdge: {fileID: 0}
   rightEdge: {fileID: 0}
   enemy: {fileID: 25620775649172702}
-  speed: 2
   initScale: {x: 0, y: 0, z: 0}
   movingLeft: 0
   idleDuration: 1.2

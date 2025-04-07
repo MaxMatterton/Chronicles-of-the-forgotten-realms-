@@ -99,13 +99,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3d328cd2d4f659458c0aaff6a4f26f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 2
-  distance: 4
-  WaitTime: 2
   Spear: 1
+  SpearWaitTime: 0
+  distance: 4
+  Speed: 2
+  Arrow: 0
   projectilePrefab: {fileID: 0}
   launchSpeed: 10
   maxDistance: 5
+  ArrowWaitTime: 0
+  SpikeBall: 0
+  pointA: {fileID: 0}
+  pointB: {fileID: 0}
+  speed: 1.5
 --- !u!50 &7994983535293797472
 Rigidbody2D:
   serializedVersion: 4
@@ -162,7 +168,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
