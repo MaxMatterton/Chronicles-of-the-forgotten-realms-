@@ -99,7 +99,7 @@ public class playermovement : MonoBehaviour,ISaveable
     [SerializeField] GameObject NormalBG;
     [SerializeField] GameObject CaveBG;
     
-        private void Awake() {
+    private void Awake() {
 
         // Initialize the player stats script
         playerstats = new PlayerStats();
@@ -241,9 +241,6 @@ public class playermovement : MonoBehaviour,ISaveable
         
 
     }
-
-   
-
     private void OnTriggerEnter2D(Collider2D other) 
     {
         if (other.gameObject.CompareTag("waystone"))
@@ -268,12 +265,6 @@ public class playermovement : MonoBehaviour,ISaveable
                 scores.Add(new LevelHighScore { LevelNumber = CurrentLevel, HighScore = playerstats.HighScore });
             }
         }
-
-        if (other.gameObject.CompareTag("BossChest"))
-        {
-            other.GetComponent<Chest>().IsOpened = KeyCollected;
-        }
-
         if (other.gameObject.CompareTag("Chest"))
         {
             other.GetComponent<Chest>().IsOpened = FreeChest;

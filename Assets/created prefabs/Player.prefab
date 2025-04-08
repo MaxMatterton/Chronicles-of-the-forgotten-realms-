@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2844552552317026800}
   - component: {fileID: 8804592084383486659}
   - component: {fileID: 533661974118541008}
-  - component: {fileID: 7361192081549404637}
+  - component: {fileID: 8186650443095165137}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -134,20 +134,19 @@ MonoBehaviour:
   HighScoreText: {fileID: 0}
   KeyCollected: 0
   Ha: {fileID: 0}
-  damage: 760.6
   audioSource: {fileID: 0}
   coinAudio: {fileID: 8300000, guid: f9ffaa991d601384f9a246a7001b8d14, type: 3}
   lightattackAudio: {fileID: 8300000, guid: d7dc6a8f5e1fd8042b16fc6a871a547c, type: 3}
   heavyattackAudio: {fileID: 8300000, guid: 45a8c93a763afc94d89d22a48f823fa1, type: 3}
-  num1: 0.5
-  num2: 1.25
+  num1: 1
+  num2: 1.2
   heavyAttackDamage: 200
   coinParticles: {fileID: 6750350852010765266, guid: 40cffe7f0c981fb4bb713a96afe3c531, type: 3}
   grounded: 1
   groundLayer:
     serializedVersion: 2
     m_Bits: 512
-  groundCheckRadius: 0.3
+  groundCheckRadius: 0.18
   groundCheck: {fileID: 8725821629513053731}
   attackCooldown1: 0.98
   attackCooldown2: 1.35
@@ -250,7 +249,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Hb: {fileID: 0}
   Ds: {fileID: 0}
-  DeathAudio: {fileID: 0}
+  DeathAudio: {fileID: 8300000, guid: 7da54357259fe3f4ba16ecf7b45eee9c, type: 3}
 --- !u!114 &533661974118541008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -268,7 +267,7 @@ MonoBehaviour:
   controller: {fileID: 5785656023530182903}
   jumpvelocity: 6.4
   Sensitivity: 555
---- !u!82 &7361192081549404637
+--- !u!82 &8186650443095165137
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -278,11 +277,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 75fd04a54dc37a342a4888177e686211, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -389,7 +388,7 @@ Transform:
   m_GameObject: {fileID: 8725821629513053731}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.1879, z: 0}
+  m_LocalPosition: {x: 0, y: -0.1883, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
