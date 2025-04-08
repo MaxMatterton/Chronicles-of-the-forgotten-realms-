@@ -28,7 +28,6 @@ public class JoystickPlayer : MonoBehaviour
         horizontalmove = x = mj.Horizontal * playermovement.playerstats.Speed;
         rb.velocity = new Vector2(x * playermovement.playerstats.Speed, rb.velocity.y);
         float verticalmove = mj.Vertical * jumpspeed;
-        Debug.Log(verticalmove);
         if (verticalmove >= Sensitivity)
         {
             jump = true;

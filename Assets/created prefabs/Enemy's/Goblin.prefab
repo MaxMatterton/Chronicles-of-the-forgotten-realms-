@@ -198,7 +198,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackCooldown: 0
   range: 1.26
-  damage: 15
+  damage: 30
   colliderDistance: 0.23
   boxCollider: {fileID: 2071749023972064080}
   BackcolliderDistance: -0.3
@@ -238,7 +238,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Hb: {fileID: 2152342424373608348}
-  pm: {fileID: 0}
   DeadDelay: 0.4
   damageParticles: {fileID: 7033977630136317332, guid: 01fd2c2b4265d5a40b21f61b20257acb, type: 3}
 --- !u!1 &1173680070136524836
