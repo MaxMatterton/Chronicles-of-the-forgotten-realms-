@@ -56,11 +56,9 @@ public class Projectile : MonoBehaviour
 
         if (collision.CompareTag("Player"))
         {
-            PlayerHealth playerHealth = collision.transform.GetComponent<PlayerHealth>();
-            if (playerHealth != null)
-            {
-                playerHealth.TakeDamage(damage,true);
-            }
+            PlayerHealth playerHealth = collision.GetComponent<PlayerHealth>();
+            playerHealth.TakeDamage(damage,true);
+            
 
         }
 

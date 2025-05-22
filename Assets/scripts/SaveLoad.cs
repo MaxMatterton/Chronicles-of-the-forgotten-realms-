@@ -16,17 +16,16 @@ public class SaveLoad : MonoBehaviour
 
         saveFile = Application.persistentDataPath + "/Save.json";
 
-
     }
-
-    public void SaveInfo(SaveData PSD)
-    {
-        string savedata = JsonUtility.ToJson(PSD, true);
-
-        File.WriteAllText(saveFile, savedata);
-        Debug.Log(savedata);    
-    }
-    public SaveData LoadInfo()
+    public void SaveInfo(Dictionary<int, int> dict)
+{
+    SaveData data = new SaveData(dict);
+    string json = JsonUtility.ToJson(data, true);
+    File.WriteAllText(saveFile, json);
+    Debug.Log("Saved Data:" + json);
+}
+    
+    public Dictionary<int, int> LoadInfo()
     {
         if (File.Exists(saveFile))
         {
@@ -34,14 +33,13 @@ public class SaveLoad : MonoBehaviour
             SaveData loadedData = JsonUtility.FromJson<SaveData>(json);
 
             Debug.Log("Loaded Data:" + json);
-            return loadedData;
+            return loadedData.ToDictionary();
         }
         else
         {
             Debug.LogWarning("No save file found!");
-            return new SaveData(new List<LevelHighScore>());
+            return new Dictionary<int, int>();
         }
-        
     }
 
 
@@ -78,23 +76,44 @@ public class SaveLoad : MonoBehaviour
 }
 
 [System.Serializable]
-public struct LevelHighScore{
-    public int LevelNumber;
-    public int HighScore;
-}
+public struct KeyValue
+{
+    public int key;
+    public int value;
 
+    public KeyValue(int k, int v)
+    {
+        key = k;
+        value = v;
+    }
+}
 [System.Serializable]
 public class SaveData
 {
-    public List<LevelHighScore> HighScores;
+    public List<KeyValue> keyValueList;
 
-    public SaveData(List<LevelHighScore> levelHighScores)
+    public SaveData(Dictionary<int, int> dict)
     {
-        this.HighScores = levelHighScores;
+        keyValueList = new List<KeyValue>();
+        foreach (var kvp in dict)
+        {
+            keyValueList.Add(new KeyValue(kvp.Key, kvp.Value));
+        }
+    }
+
+    public Dictionary<int, int> ToDictionary()
+    {
+        Dictionary<int, int> dict = new Dictionary<int, int>();
+        foreach (var kv in keyValueList)
+        {
+            dict[kv.key] = kv.value;
+        }
+        return dict;
     }
 }
 
 public interface ISaveable
 {
     public void Save();
+
 }

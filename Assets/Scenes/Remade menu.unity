@@ -668,10 +668,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Shreyash Gaggar           Syed Rehan\n Lead Developer             BackGround
-    Artist\n\nPrabudh Prashanth        Yashvardhan nazare   \nCharachter Creator        
-    icon artist\nLevel Design         \n\nRishith J Kumar               Mrs. Afra
-    Najam\nParticle system                Mentor\nUI/UX Designer\nSound Artist\n\n"
+  m_text: "Shreyash Gaggar           Syed Rehan\n Lead Developer             Background 
+    Artist\n\nPrabudh Prashanth        Yashvardhan Nazare   \nCharachter Creator        
+    Icon Artist\nLevel Designer         \n\nRishith J Kumar               Ms.Afra
+    Najam\nEffects Artist                    Mentor\nUX Designer\nSound Artist\n\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2252,8 +2252,8 @@ Transform:
   m_GameObject: {fileID: 576408528}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.03, y: 3.36, z: 0}
-  m_LocalScale: {x: 1.7707, y: 1.7707, z: 1.7707}
+  m_LocalPosition: {x: -0.0721, y: 2.3859, z: 0}
+  m_LocalScale: {x: 1.8290284, y: 1.4941789, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -2558,10 +2558,10 @@ RectTransform:
   - {fileID: 841287537}
   m_Father: {fileID: 792050305}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &689095099
 MonoBehaviour:
@@ -2628,7 +2628,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -3202,9 +3202,9 @@ RectTransform:
   - {fileID: 1250742075}
   m_Father: {fileID: 689095098}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 48.00006, y: 73.26318}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 27, y: 11}
   m_SizeDelta: {x: 587.1526, y: 784.03}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &897307964
@@ -4706,9 +4706,9 @@ RectTransform:
   - {fileID: 1811013940}
   m_Father: {fileID: 981850926}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 958, y: 477.99997}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -2, y: 22.99997}
   m_SizeDelta: {x: 587.1526, y: 784.03}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2089382780

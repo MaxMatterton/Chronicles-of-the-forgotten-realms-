@@ -8,8 +8,9 @@ using Cainos.LucidEditor;
 using System;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
+using UnityEngine.SocialPlatforms.Impl;
 
-public class playermovement : MonoBehaviour,ISaveable
+public class playermovement : MonoBehaviour
 {
     public TextMeshProUGUI Cointext;
     public Rigidbody2D mybody;
@@ -20,14 +21,12 @@ public class playermovement : MonoBehaviour,ISaveable
     public TextMeshProUGUI HighScoreText;
 
     [Header("Score")]
-    float scorecount;
+    float Coincount;
     public bool KeyCollected = false;
-    int HighScore;
-    int CurrentLevel; 
     
     //Script References
     [Header("Scripts")] 
-    List<LevelHighScore> scores = new List<LevelHighScore>();
+    
     EnemyHealth EnemyHealth;
     BossHealth bossHealth;
     public static PlayerStats playerstats;
@@ -111,7 +110,6 @@ public class playermovement : MonoBehaviour,ISaveable
             Debug.Log("Audio Connected");
         }
             
-        CurrentLevel = SceneManager.GetActiveScene().buildIndex;
         playerstats.Score = 0;
     }
     
@@ -128,6 +126,7 @@ public class playermovement : MonoBehaviour,ISaveable
         //Attacking
         anim.SetBool("isgrouned ", grounded);
     }
+    
     public void BasicAttack () {
         if (PlayerRange())
             {
@@ -139,6 +138,7 @@ public class playermovement : MonoBehaviour,ISaveable
                     playerstats.Energy += 1;
                     Ha.setEnergy(playerstats.Energy);
                     PlayWithRandomPitch(lightattackAudio);
+                    Debug.Log("Damage" + playerstats.CalculateBasicAttackDamage(playerstats.AttackPower,1,1));
                 }
             }
             else if (cooldownTimer1 >= attackCooldown1)
@@ -148,6 +148,7 @@ public class playermovement : MonoBehaviour,ISaveable
                 PlayWithRandomPitch(lightattackAudio);
             }
     }
+
     public void HeavyAttack () {
         if (playerstats.Energy >= playerstats.MaxEnergy)
         {
@@ -161,6 +162,7 @@ public class playermovement : MonoBehaviour,ISaveable
                     playerstats.Energy = 0;
                     Ha.setEnergy(playerstats.Energy);
                     PlayWithRandomPitch(heavyattackAudio);
+                    Debug.Log("Damage" + playerstats.CalculateHeavyAttackDamage(playerstats.AttackPower,1,1));
                 }
 
             }
@@ -173,6 +175,7 @@ public class playermovement : MonoBehaviour,ISaveable
 
         }
     }
+
     public void PlayWithRandomPitch( AudioClip clip)
     {
         float randomPitch = Random.Range(num1, num2);
@@ -181,6 +184,7 @@ public class playermovement : MonoBehaviour,ISaveable
         audioSource.PlayOneShot(clip);
         Invoke("ResetPitch",1);
     }
+
     public void ResetPitch()
     {
         audioSource.pitch = 1;
@@ -209,6 +213,14 @@ public class playermovement : MonoBehaviour,ISaveable
         anim.SetBool("isrunning ",move != 0);
     }
 
+    public void Jump () 
+    {
+        if (grounded == true)
+        {
+            mybody.velocity = new Vector2(mybody.velocity.x, JumpPower);
+        }
+    }
+
     void GroundCheck()
     {
         // Raycast downward to check for ground
@@ -227,20 +239,14 @@ public class playermovement : MonoBehaviour,ISaveable
             {
                 Destroy(other.gameObject);
             }
-        }
-        if (other.gameObject.CompareTag("Trap"))
+        }    
+        else if (other.gameObject.CompareTag("Trap"))
         {
-            PlayerHealth.TakeDamage(50,false);
-
-            // Determine the direction based on player's facing
-            float knockbackDirection = transform.localScale.x > 0 ? -1 : 1;
-
-            // Apply knockback force
-            mybody.AddForce(new Vector2(knockbackDirection * 20, 20), ForceMode2D.Impulse);
+            playerstats.Knockback(mybody,this.gameObject);
+            PlayerHealth.TakeDamage((playermovement.playerstats.MaxHealth * 10)/100,false);
         }
-        
-
     }
+
     private void OnTriggerEnter2D(Collider2D other) 
     {
         if (other.gameObject.CompareTag("waystone"))
@@ -250,20 +256,10 @@ public class playermovement : MonoBehaviour,ISaveable
 
         if (other.gameObject.CompareTag("Finish"))
         {
-            next.SetActive(true);
+            next.SetActive(true);    
             playerstats.HighScoreCheck();
             ScoreText.text = playerstats.Score.ToString();
             HighScoreText.text = playerstats.HighScore.ToString();
-            int index = scores.FindIndex(x => x.LevelNumber == CurrentLevel);
-
-            if (index != -1)
-            {
-                scores[index] = new LevelHighScore { LevelNumber = CurrentLevel, HighScore = playerstats.HighScore };
-            }
-            else
-            {
-                scores.Add(new LevelHighScore { LevelNumber = CurrentLevel, HighScore = playerstats.HighScore });
-            }
         }
         if (other.gameObject.CompareTag("Chest"))
         {
@@ -275,9 +271,9 @@ public class playermovement : MonoBehaviour,ISaveable
         {
             audioSource.PlayOneShot(coinAudio);
             Destroy(other.gameObject);
-            scorecount++;
-            Debug.Log(scorecount);
-            Cointext.text = "coins:" + scorecount.ToString();
+            Coincount++;
+            Debug.Log(Coincount);
+            Cointext.text = "coins:" + Coincount.ToString();
             CoinParticles(other);
         }
 
@@ -305,6 +301,7 @@ public class playermovement : MonoBehaviour,ISaveable
         }
         
     }
+
     bool PlayerRange()
     {
         RaycastHit2D hit =
@@ -329,6 +326,7 @@ public class playermovement : MonoBehaviour,ISaveable
         Gizmos.DrawWireCube(boxCollider.bounds.center + transform.right * range * transform.localScale.x * colliderDistance,
             new Vector3(boxCollider.bounds.size.x * range, boxCollider.bounds.size.y, boxCollider.bounds.size.z));
     }
+
     public void damageEnemy(float damage)
     {
         if (EnemyHealth != null)
@@ -339,23 +337,10 @@ public class playermovement : MonoBehaviour,ISaveable
         {
             bossHealth.TakeDamage(damage,transform.right);
         }
-        
     }
 
     public void CoinParticles(Collider2D other)
     {
-        coinParticlesInstance = Instantiate(coinParticles, other.transform.position, Quaternion.identity);
-
-        
-    }
-
-    public void Save()
-    {
-        
-        SaveData WorldData = new SaveData(scores);
-
-        SaveLoad.instance.SaveInfo(WorldData);
-    }
-
-    
+        coinParticlesInstance = Instantiate(coinParticles, other.transform.position, Quaternion.identity); 
+    }   
 }

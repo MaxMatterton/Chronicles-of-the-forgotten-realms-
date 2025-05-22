@@ -7,7 +7,6 @@ public class BossHealth : MonoBehaviour
 {
     public HealthBar Hb;
     private Animator anim;
-    public playermovement pm;
 
     public int MaxHealth = 100;
     public float CurrentHealth;
@@ -65,10 +64,6 @@ public class BossHealth : MonoBehaviour
 
     private void DeadEnemy()
     {
-        if (gameObject.CompareTag("Boss1"))
-        {
-            pm.KeyCollected = true;
-        }
         Destroy(gameObject);
     }
 

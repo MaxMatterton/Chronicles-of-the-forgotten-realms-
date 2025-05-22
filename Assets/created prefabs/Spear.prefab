@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7191371188905011001}
   m_Layer: 0
   m_Name: Spear
-  m_TagString: Untagged
+  m_TagString: Trap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3d328cd2d4f659458c0aaff6a4f26f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerHealth: {fileID: 0}
   Spear: 1
   SpearWaitTime: 0
   distance: 4

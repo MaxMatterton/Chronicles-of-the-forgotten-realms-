@@ -26,14 +26,14 @@ public class SceneScript : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
-    public void LevelsMenu()
-    {
-        SceneManager.LoadScene(6);
-    }
+        public void LevelsMenu()
+        {
+            SceneManager.LoadScene(7);
+        }
 
-    public void LevelSelect(int Level) {
-        SceneManager.LoadScene(Level);
-    }
+        public void LevelSelect(int Level) {
+            SceneManager.LoadScene(Level);
+        }
 
     public void OnApplicationQuit()
     {

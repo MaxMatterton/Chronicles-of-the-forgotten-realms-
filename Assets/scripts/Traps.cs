@@ -2,11 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 
 public class Traps : MonoBehaviour
 {
     private Rigidbody2D MyBody;
+
+    public PlayerHealth playerHealth;
 
     float Timer = Mathf.Infinity;
 
@@ -30,6 +33,7 @@ public class Traps : MonoBehaviour
     public Transform pointA;  // First point
     public Transform pointB;  // Second point
     public float speed = 1.5f;
+    public bool reverse;
     
 
 
@@ -60,15 +64,31 @@ public class Traps : MonoBehaviour
         {
             SpikeBallMovement();
         }
-
-        
-
     }
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            
+        }
+    }
+
     public void SpikeBallMovement()
     {
-        // Spike Ball trap
-        float t = Mathf.PingPong(Time.time * speed, 1);
-        transform.position = Vector2.Lerp(pointA.position, pointB.position, t); // Moves smoothly between points
+        if (reverse)
+        {
+            // Spike Ball trap
+            float t = Mathf.PingPong(Time.time * speed, 1);
+            transform.position = Vector2.Lerp(pointB.position,pointA.position, t); // Moves smoothly between points
+        }
+        else if (!reverse)
+        {
+            // Spike Ball trap
+            float t = Mathf.PingPong(Time.time * speed, 1);
+            transform.position = Vector2.Lerp(pointA.position, pointB.position, t); // Moves smoothly between points
+        }
+        
     }
 
     private IEnumerator SpearTrap()
@@ -130,4 +150,5 @@ public class Traps : MonoBehaviour
         }
         Destroy(obj);
     }
+    
 }

@@ -156,9 +156,9 @@ MonoBehaviour:
   EnemyLayer:
     serializedVersion: 2
     m_Bits: 128
-  playerHealth: 250
+  playerHealth: 1
   playerSpeed: 35
-  PlayerAttack: 70
+  PlayerAttack: 1
   playerDefence: 25
   JumpPower: 12.09
   NormalBG: {fileID: 0}

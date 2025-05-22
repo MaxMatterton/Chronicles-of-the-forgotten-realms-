@@ -2,9 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
-public class PlayerStats 
+public class PlayerStats : ISaveable
 {
     public static PlayerStats instance;
 
@@ -39,9 +40,21 @@ public class PlayerStats
     //Score
     public int Score;
     public int HighScore;
+    public int CurrentLevel;
+    public Dictionary<int, int> scores;
 
     private void Awake() {
         instance = this;
+
+        CurrentLevel = SceneManager.GetActiveScene().buildIndex;
+        scores = SaveLoad.instance.LoadInfo();
+        if (scores.ContainsKey(CurrentLevel))
+        {
+            HighScore = scores[CurrentLevel];
+        }
+        else{
+            HighScore = 0;
+        }
     }
 
     public void Heal(float Amount)
@@ -114,13 +127,21 @@ public class PlayerStats
             Defense = Defense + (DefensePoints * 3F);
             MaxHealth = MaxHealth + (MaxHealthPoints * 150F);
             Health = MaxHealth;
-            Debug.Log(this.AttackPower);
-            Debug.Log(this.Health);
-            Debug.Log(this.MaxHealth);
-            Debug.Log(this.Defense);
-            Debug.Log(this.Speed);
+            Debug.Log("Attack:" + AttackPower);
+            Debug.Log("Health" + Health);
+            Debug.Log("Defence" + Defense);
+            Debug.Log("Speed" + Speed);
         }
         
+    }
+    
+    public void Knockback(Rigidbody2D Mybody,GameObject other)
+    {
+         // Determine the direction based on player's facing
+        float knockbackDirection = other.transform.localScale.x > 0 ? -1 : 1;
+
+        // Apply knockback force
+        Mybody.AddForce(new Vector2(knockbackDirection * 6, 2), ForceMode2D.Impulse);
     }
 
     public void Upgrade(int Type)
@@ -182,12 +203,31 @@ public class PlayerStats
         if (Score > HighScore)
         {
             this.HighScore = Score;
-            Debug.Log("New HoghScore");
+            SaveHighScore();
+            Debug.Log("New HighScore");
         }
         else
         {
             Debug.Log("So Close!Better Luck Next Time.");
         }
     }
-    
+    public void SaveHighScore()
+    {
+        if (scores.ContainsKey(CurrentLevel))
+        {
+            scores[CurrentLevel] = HighScore;
+        }
+        else{
+            scores.Add(CurrentLevel, HighScore);
+        }
+        Save();
+    }
+
+    public void Save()
+    {
+        
+        Dictionary<int,int> WorldData = scores;
+
+        SaveLoad.instance.SaveInfo(WorldData);
+    }
 }

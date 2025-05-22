@@ -9,7 +9,6 @@ public class enemyattack : MonoBehaviour
     [Header("Attack Parameters")]
     [SerializeField] float attackCooldown;
     [SerializeField] float range;
-    [SerializeField] int damage;
 
     [Header("Collider Parameters")]
     [SerializeField] float colliderDistance;
@@ -23,15 +22,43 @@ public class enemyattack : MonoBehaviour
     [SerializeField] LayerMask playerLayer;
     float cooldownTimer = Mathf.Infinity;
 
+    [Header("Enemy Type")]
+    [SerializeField] int enemyType;
+    float EnemyDamage;
+
     //References
     Animator anim;
     PlayerHealth Playerhealth;
     EnemyPatrol enemyPatrol;
 
+    public float CalculateEnemyDamage(float damage)
+    {
+        return Mathf.Max(playermovement.playerstats.MaxHealth/10 - damage , 1);
+    }
+
+
+    public void SetType()
+    {
+        if (enemyType == 0)
+        {
+            EnemyDamage = 10;
+        }
+        else if (enemyType == 1)
+        {
+            EnemyDamage = 5;
+        }
+        else if (enemyType == 2)
+        {
+            EnemyDamage = 0;
+        }
+    }
+
     private void Awake()
     {
         anim = GetComponent<Animator>();
         enemyPatrol = GetComponentInParent<EnemyPatrol>();
+        SetType();
+        
     }
 
     void Update()
@@ -93,7 +120,7 @@ public class enemyattack : MonoBehaviour
     private void DamagePlayer()
     {
         if (PlayerInSight())
-            Playerhealth.TakeDamage(damage,true);
+            Playerhealth.TakeDamage(CalculateEnemyDamage(EnemyDamage),true);
     }
     
     
