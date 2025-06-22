@@ -19,6 +19,8 @@ public class CutSceneText : MonoBehaviour
     }
     void Update()
     {
+
+        
     }
 
     // 🟢 This function will be triggered by the Signal Receiver
